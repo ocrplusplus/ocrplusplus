@@ -1,0 +1,4 @@
+<<footnote>>
+1 http://python-crfsuite.readthedocs.org/en/latest/
+<<footnote>>
+2 http://nlp.stanford.edu/projects/glove/

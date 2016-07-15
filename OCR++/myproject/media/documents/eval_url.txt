@@ -1,0 +1,8 @@
+<<url>>
+http://python-crfsuite.readthedocs.org/en/latest/
+<<url>>
+http://nlp.stanford.edu/projects/glove/
+<<url>>
+http://www.chokkan.org/software/crfsuite/
+<<url>>
+http://tinyurl.com/gate-life-sci/

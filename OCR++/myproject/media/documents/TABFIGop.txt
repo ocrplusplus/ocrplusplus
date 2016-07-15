@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<Tables_Figures>
+	<Tables>
+		<table>Table 1 shows the final results of the DNER task for the different runs of our system. We can see that the best F-score is obtained by the run 1, which is also the best on the development dataset, and improves 0.5% over the others runs. Run 2 and 3 obtain very close results. This may suggests that it is not suitable to use higher k values than 100. Comparing with the baseline system provided </table>
+	</Tables>
+	<Figures/>
+</Tables_Figures>

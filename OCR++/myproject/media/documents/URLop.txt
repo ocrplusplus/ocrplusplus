@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<UniformResourceLocator>
+	<URL>
+		<url>http://python-crfsuite.readthedocs.org/en/latest/</url>
+		<url>http://nlp.stanford.edu/projects/glove/</url>
+		<url>http://www.chokkan.org/software/crfsuite/</url>
+		<url>http://tinyurl.com/gate-life-sci/</url>
+	</URL>
+</UniformResourceLocator>

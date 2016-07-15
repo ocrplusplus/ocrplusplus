@@ -1,0 +1,5 @@
+<?xml version="1.0" ?>
+<Footnotes>
+	<footnote>1 http://python-crfsuite.readthedocs.org/en/latest/ </footnote>
+	<footnote>2 http://nlp.stanford.edu/projects/glove/ </footnote>
+</Footnotes>

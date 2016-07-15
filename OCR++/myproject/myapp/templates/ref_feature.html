@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	{% include "includes/header.html" %}
+
+	<style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #searchbar input[type="text"] {
+            margin: 0 editoro;
+            text-align: center;
+            width: 430px;
+            display: block;
+            padding: 20px;
+            font-size: 1.2em;
+            border: solid 2px #333;
+            -webkit-border-radius: 4px;
+               -moz-border-radius: 4px;
+                    border-radius: 4px;
+        }
+		#searchbar {
+			margin: 20px auto;
+            font-family: arial;
+            font-size: 100%;
+            text-align: center;
+		}
+        #searchbar ul{
+            list-style: none;
+            display: inline-block;
+            margin-top: 10px;
+            width: 480px;
+            text-align: left;
+        }
+        #searchbar ul li {
+            display: block;
+            position: relative;
+            margin: 2px auto;
+            padding: 20px;
+            border: solid 2px #fff;
+            background: #f1f1f1;
+            font-size: 0.9em;
+            color: #333;
+            -webkit-border-radius: 4px;
+               -moz-border-radius: 4px;
+                    border-radius: 4px;
+            -webkit-transition: 0.3s;
+               -moz-transition: 0.3s;
+                    transition: 0.3s;
+        }
+        #searchbar ul li a {
+            position: absolute;
+            left: 120px;
+            color: #999;
+        }
+
+        #searchbar ul li:hover, .focused {
+            background: #333;
+            color: #fff;
+
+        }
+
+    </style>
+    <script src="http://fb.me/react-0.10.0.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.10.0.js"></script>
+</head>
+
+
+<body class="nav-md">
+
+	<div class="container body">
+
+		<div class="main_container">
+
+			{% include "includes/leftandtop.html" %}
+			<!-- page content -->
+			<div class="right_col" role="main">
+
+				<script>
+					var htmlstuff = ""
+					var libraries = [];
+					$.ajax({
+						url: '../getref_feature/',
+						type: 'GET',
+						success: function(response) {
+							// console.log(response)
+
+							if(response == "No file")
+							{
+								htmlstuff = htmlstuff + "<li><div class=\"block\"><div class=\"block_content\"><p class=\"excerpt\">N.A.</p></div></div></li>"
+							}
+							else
+							{
+								refs = response.split("\n\n")
+								console.log(refs)
+								for(var i=0; i<refs.length-1; i++)
+								{
+									var block = ""
+									var flag = 0
+									var aut = refs[i].match(new RegExp("<author>(.*)</author>"))
+									if(aut[1]!="")
+									{
+										flag=1
+										block = block + "<p><strong>Author : </strong>" + aut[1] + "</p>"
+									}
+									var title = refs[i].match(new RegExp("<title>(.*)</title>"))
+									if(title[1]!="")
+									{
+										flag=1
+										block = block + "<p><strong>Title : </strong>" + title[1] + "</p>"
+									}
+									var journal = refs[i].match(new RegExp("<journal>(.*)</journal>"))
+									if(journal[1]!="")
+									{
+										flag=1
+										block = block + "<p><strong>Journal : </strong>" + journal[1] + "</p>"
+									}
+									var publisher = refs[i].match(new RegExp("<publisher>(.*)</publisher>"))
+									if(publisher[1]!="")
+									{
+										flag=1
+										block = block + "<p><strong>Publisher : </strong>" + publisher[1] + "</p>"
+									}
+									var year = refs[i].match(new RegExp("<year>(.*)</year>"))
+									if(year[1]!="")
+									{
+										flag=1
+										block = block + "<p><strong>Year : </strong>" + year[1] + "</p>"
+									}
+									var booktitle = refs[i].match(new RegExp("<booktitle>(.*)</booktitle>"))
+									if(booktitle[1]!="")
+									{
+										flag=1
+										block = block + "<p><strong>Booktitle : </strong>" + booktitle[1] + "</p>"
+									}
+									var volume = refs[i].match(new RegExp("<volume>(.*)</volume>"))
+									if(volume[1]!="")
+									{
+										flag=1
+										block = block + "<p><strong>Volume : </strong>" + volume[1] + "</p>"
+									}
+									var pagenumber = refs[i].match(new RegExp("<pagenumber>(.*)</pagenumber>"))
+									if(pagenumber[1]!="")
+									{
+										flag=1
+										block = block + "<p><strong>Pagenumber : </strong>" + pagenumber[1] + "</p>"
+									}
+									var location = refs[i].match(new RegExp("<location>(.*)</location>"))
+									if(location[1]!="")
+									{
+										flag=1
+										block = block + "<p><strong>Location : </strong>" + location[1] + "</p>"
+									}
+									var editor = refs[i].match(new RegExp("<editor>(.*)</editor>"))
+									if(editor[1]!="")
+									{
+										block = block + "<p><strong>Editor : </strong>" + aut[1] + "</p>"
+										flag=1
+									}
+									if(flag==0)
+									{
+										continue;
+									}
+									// console.log(block)
+									htmlstuff = htmlstuff + "<li><div class=\"block\"><div class=\"block_content\"><h2 class=\"title\"><a>"+"</a></h2><p class=\"excerpt\">"+block+"</p></div></div></li>"
+								}
+
+							}
+
+							document.getElementById("ref").innerHTML = htmlstuff;
+						},
+						error: function(error) {
+							console.log(error);
+						},
+
+					});
+				</script>
+
+				<div class="row">
+					<div class="col-md-6 col-sm-6 col-xs-12">
+
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>
+                                	Reference Features
+                                	<a href="../../media/documents/testResults/xmls/input.xml" download>
+											<font size="3">(Download)</font>
+									</a>
+								</h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                                    </li>
+                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <div class="dashboard-widget-content">
+
+                                    <ul class="list-unstyled timeline widget">
+										<div id="ref">
+										</div>
+
+
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+					</div>
+
+					<div class="col-md-6 col-sm-6 col-xs-12">
+				        <embed class = "x_panel" src="../../media/documents/input.pdf" height="500px">
+					</div>
+
+				</div>
+
+				<footer>
+					{% include "includes/footer.html" %}
+				</footer>
+				<!-- /footer content -->
+			</div>
+
+		</div>
+
+	</div>
+
+	<div id="custom_notifications" class="custom-notifications dsp_none">
+		<ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
+		</ul>
+		<div class="clearfix"></div>
+		<div id="notif-group" class="tabbed_notifications"></div>
+	</div>
+
+	<script src="/static/js/bootstrap.min.js"></script>
+
+	<!-- gauge js -->
+	<script type="text/javascript" src="/static/js/gauge/gauge.min.js"></script>
+	<script type="text/javascript" src="/static/js/gauge/gauge_demo.js"></script>
+	<!-- chart js -->
+	<script src="/static/js/chart/static/js/chart.min.js"></script>
+	<!-- bootstrap progress js -->
+	<script src="/static/js/progressbar/bootstrap-progressbar.min.js"></script>
+	<script src="/static/js/nicescroll/jquery.nicescroll.min.js"></script>
+	<!-- icheck -->
+	<script src="/static/js/icheck/icheck.min.js"></script>
+	<!-- daterangepicker -->
+	<script type="text/javascript" src="/static/js/moment.min.js"></script>
+	<script type="text/javascript" src="/static/js/datepicker/daterangepicker.js"></script>
+
+	<script src="/static/js/custom.js"></script>
+
+	<!-- flot js -->
+	<!--[if lte IE 8]><script type="text/javascript" src="/static/js/excanvas.min.js"></script><![endif]-->
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.js"></script>
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.pie.js"></script>
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.orderBars.js"></script>
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.time.min.js"></script>
+	<script type="text/javascript" src="/static/js/flot/date.js"></script>
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.spline.js"></script>
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.stack.js"></script>
+	<script type="text/javascript" src="/static/js/flot/curvedLines.js"></script>
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.resize.js"></script>
+	<script>
+	$(document).ready(function () {
+		// [17, 74, 6, 39, 20, 85, 7]
+		//[82, 23, 66, 9, 99, 6, 2]
+		var data1 = [[gd(2012, 1, 1), 17], [gd(2012, 1, 2), 74], [gd(2012, 1, 3), 6], [gd(2012, 1, 4), 39], [gd(2012, 1, 5), 20], [gd(2012, 1, 6), 85], [gd(2012, 1, 7), 7]];
+
+		var data2 = [[gd(2012, 1, 1), 82], [gd(2012, 1, 2), 23], [gd(2012, 1, 3), 66], [gd(2012, 1, 4), 9], [gd(2012, 1, 5), 119], [gd(2012, 1, 6), 6], [gd(2012, 1, 7), 9]];
+		$("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
+			data1, data2
+		], {
+			series: {
+				lines: {
+					show: false,
+					fill: true
+				},
+				splines: {
+					show: true,
+					tension: 0.4,
+					lineWidth: 1,
+					fill: 0.4
+				},
+				points: {
+					radius: 0,
+					show: true
+				},
+				shadowSize: 2
+			},
+			grid: {
+				verticalLines: true,
+				hoverable: true,
+				clickable: true,
+				tickColor: "#d5d5d5",
+				borderWidth: 1,
+				color: '#fff'
+			},
+			colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+			xaxis: {
+				tickColor: "rgba(51, 51, 51, 0.06)",
+				mode: "time",
+				tickSize: [1, "day"],
+				//tickLength: 10,
+				axisLabel: "Date",
+				axisLabelUseCanvas: true,
+				axisLabelFontSizePixels: 12,
+				axisLabelFontFamily: 'Verdana, Arial',
+				axisLabelPadding: 10
+				//mode: "time", timeformat: "%m/%d/%y", minTickSize: [1, "day"]
+			},
+			yaxis: {
+				ticks: 8,
+				tickColor: "rgba(51, 51, 51, 0.06)",
+			},
+			tooltip: false
+		});
+
+		function gd(year, month, day) {
+			return new Date(year, month - 1, day).getTime();
+		}
+	});
+	</script>
+
+	<!-- worldmap -->
+	<script type="text/javascript" src="/static/js/maps/jquery-jvectormap-2.0.3.min.js"></script>
+	<script type="text/javascript" src="/static/js/maps/gdp-data.js"></script>
+	<script type="text/javascript" src="/static/js/maps/jquery-jvectormap-world-mill-en.js"></script>
+	<script type="text/javascript" src="/static/js/maps/jquery-jvectormap-us-aea-en.js"></script>
+	<!-- pace -->
+	<script src="/static/js/pace/pace.min.js"></script>
+	<script>
+	$(function () {
+		$('#world-map-gdp').vectorMap({
+			map: 'world_mill_en',
+			backgroundColor: 'transparent',
+			zoomOnScroll: false,
+			series: {
+				regions: [{
+					values: gdpData,
+					scale: ['#E6F2F0', '#149B7E'],
+					normalizeFunction: 'polynomial'
+				}]
+			},
+			onRegionTipShow: function (e, el, code) {
+				el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+			}
+		});
+	});
+	</script>
+	<!-- skycons -->
+	<script src="/static/js/skycons/skycons.min.js"></script>
+	<script>
+	var icons = new Skycons({
+		"color": "#73879C"
+	}),
+	list = [
+		"clear-day", "clear-night", "partly-cloudy-day",
+		"partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+		"fog"
+	],
+	i;
+
+	for (i = list.length; i--;)
+	icons.set(list[i], list[i]);
+
+	icons.play();
+	</script>
+
+	<!-- dashbord linegraph -->
+	<script>
+	var doughnutData = [
+		{
+			value: 30,
+			color: "#455C73"
+		},
+		{
+			value: 30,
+			color: "#9B59B6"
+		},
+		{
+			value: 60,
+			color: "#BDC3C7"
+		},
+		{
+			value: 100,
+			color: "#26B99A"
+		},
+		{
+			value: 120,
+			color: "#3498DB"
+		}
+	];
+	var myDoughnut = new Chart(document.getElementById("canvas1").getContext("2d")).Doughnut(doughnutData);
+	</script>
+	<!-- /dashbord linegraph -->
+	<!-- datepicker -->
+	<script type="text/javascript">
+	$(document).ready(function () {
+
+		var cb = function (start, end, label) {
+			console.log(start.toISOString(), end.toISOString(), label);
+			$('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+			//alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
+		}
+
+		var optionSet1 = {
+			startDate: moment().subtract(29, 'days'),
+			endDate: moment(),
+			minDate: '01/01/2012',
+			maxDate: '12/31/2015',
+			dateLimit: {
+				days: 60
+			},
+			showDropdowns: true,
+			showWeekNumbers: true,
+			timePicker: false,
+			timePickerIncrement: 1,
+			timePicker12Hour: true,
+			ranges: {
+				'Today': [moment(), moment()],
+				'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+				'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+				'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+				'This Month': [moment().startOf('month'), moment().endOf('month')],
+				'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+			},
+			opens: 'left',
+			buttonClasses: ['btn btn-default'],
+			applyClass: 'btn-small btn-primary',
+			cancelClass: 'btn-small',
+			format: 'MM/DD/YYYY',
+			separator: ' to ',
+			locale: {
+				applyLabel: 'Submit',
+				cancelLabel: 'Clear',
+				fromLabel: 'From',
+				toLabel: 'To',
+				customRangeLabel: 'Custom',
+				daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+				monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+				firstDay: 1
+			}
+		};
+		$('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+		$('#reportrange').daterangepicker(optionSet1, cb);
+		$('#reportrange').on('show.daterangepicker', function () {
+			console.log("show event fired");
+		});
+		$('#reportrange').on('hide.daterangepicker', function () {
+			console.log("hide event fired");
+		});
+		$('#reportrange').on('apply.daterangepicker', function (ev, picker) {
+			console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+		});
+		$('#reportrange').on('cancel.daterangepicker', function (ev, picker) {
+			console.log("cancel event fired");
+		});
+		$('#options1').click(function () {
+			$('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+		});
+		$('#options2').click(function () {
+			$('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+		});
+		$('#destroy').click(function () {
+			$('#reportrange').data('daterangepicker').remove();
+		});
+	});
+	</script>
+	<script>
+	NProgress.done();
+	</script>
+										<!-- /datepicker -->
+										<!-- /footer content -->
+</body>
+
+</html>

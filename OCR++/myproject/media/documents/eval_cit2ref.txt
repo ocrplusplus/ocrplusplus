@@ -1,0 +1,36 @@
+<<cit2ref>>
+Citation : the recognition of the diseases as well as the extraction of their relations with chemical substances in the texts [1]
+Reference  : 
+1. Wei CH, Peng Y, Leaman R, et al. (2015) Overview of the BioCreative V Chemical Disease Relation (CDR) Task, in Proceedings of the fifth BioCreative challenge evaluation workshop, Sevilla, Spain. 
+<<cit2ref>>
+Citation : obtains one of the best results in the recognition of drugs and chemical names [3, 4]
+Reference  : 
+3. Martin Krallinger, Florian Leitner, Obdulia Rabal, Miguel Vazquez, Julen Oyarza- bal, and Alfonso Valencia. 2015. Chemdner: The drugs and chemical names extrac- tion challenge. J Cheminform, 7(Suppl 1):S1. 
+<<cit2ref>>
+Citation : obtains one of the best results in the recognition of drugs and chemical names [3, 4]
+Reference  : 
+4. Isabel Segura Bedmar, Paloma Mart  nez, and Mar  a Herrero Zazo. 2013. Semeval- 2013 task 9: Extraction of drug-drug interactions from biomedical texts. In SemEval- 2013: Semantic Evaluation Exercises Workshop, pages 341350. Association for Com- putational Linguistics. 
+<<cit2ref>>
+Citation : Recently, word embeddings have been used in NLP task such as named entity recognition or parsing [7, 9]
+Reference  : 
+7. Joseph Turian, Lev Ratinov, and Yoshua Bengio. 2010. Word representations: a simple and general method for semi-supervised learning. In Proceedings of the 48th annual meeting of the association for compu- tational linguistics, pages 384394. Association for Computational Linguistics. 
+<<cit2ref>>
+Citation : Recently, word embeddings have been used in NLP task such as named entity recognition or parsing [7, 9]
+Reference  : 
+9. Richard Socher, John Bauer, Christopher D Manning, and Andrew Y Ng. 2013. Parsing with compositional vector grammars. In In Proceedings of the ACL confer- ence. Citeseer. Proceedings of the fifth BioCreative challenge evaluation workshop 
+<<cit2ref>>
+Citation : of word embedding features into a CRF can improve the DNER system. Thus, we trained word embeddings using the Word2Vec tool [5]
+Reference  : 
+5. Mikolov, Tomas, Chen, Kai, Corrado, Greg %27 Dean, Jeffrey (2013). Efficient esti- mation of word representations in vector space. arXiv preprint arXiv:1301.3781. 
+<<cit2ref>>
+Citation : The CDR task provided a new corpus for the evaluation. This dataset contains pieces of text with disease annotations selected from set [2]
+Reference  : 
+2. Davis, Allan Peter, Wiegers, Thomas C., Roberts, Phoebe M., King, Benjamin L., Lay, Jean M., Lennon-Hopkins, Kelley, Sciaky, Daniela, Johnson, Robin, Keat- ing, Heather, Greene, Nigel, Hernandez, Robert, McConnell, Kevin J., Enayetallah, Ahmed E. %27 Mattingly, Carolyn J. (2013). A CTDPfizer collaboration: manual cu- ration of 88 000 scientific articles text mined for drugdisease and drugphenotype interactions. Database, 2013. 
+<<cit2ref>>
+Citation : embedding features provided by the Word2Vec tool. In particular, we used a python binding 1 to CRFsuite [6]
+Reference  : 
+6. Naoaki Okazaki, CRFsuite: a fast implementation of Conditional Random Fields (CRFs), http://www.chokkan.org/software/crfsuite/, 2007. 
+<<cit2ref>>
+Citation : BioCreative V track For this task, a pipeline in GATE [8]
+Reference  : 
+8. H. Cunningham, V. Tablan, A. Roberts, K. Bontcheva (2013) Getting More Out of Biomedical Documents with GATEs Full Lifecycle Open Source Text Analytics. PLoS Comput Biol 9(2): e1002854. doi:10.1371/journal.pcbi.1002854 - http://tinyurl.com/gate-life-sci/ 

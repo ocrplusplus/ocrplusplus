@@ -1,0 +1,21 @@
+.jumbotron {
+	display: table;
+	color: white;
+	text-align: center;
+	width: 100%;
+	height: 100%;
+	background: cover;
+	background-image: url('../img/bg.jpg')
+}
+
+html {
+	height: 100%
+}
+#outer-box {
+	display: table-cell;
+	vertical-align: middle;
+}
+#box {
+	margin-left: auto;
+	margin-right: auto;
+}
