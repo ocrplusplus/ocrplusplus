@@ -203,7 +203,7 @@ def runScript():
             print inst           # __str__ allows args to be printed directly
 
         try:
-            generate_xml.main()
+            xml = generate_xml.main()
         except Exception, inst:
             print "Exception : In XML generation"
             #print e
