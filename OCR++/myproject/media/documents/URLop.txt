@@ -1,9 +1,19 @@
 <?xml version="1.0" ?>
 <UniformResourceLocator>
 	<URL>
-		<url>http://python-crfsuite.readthedocs.org/en/latest/</url>
-		<url>http://nlp.stanford.edu/projects/glove/</url>
-		<url>http://www.chokkan.org/software/crfsuite/</url>
-		<url>http://tinyurl.com/gate-life-sci/</url>
+		<url>http://cnergres.iitkgp.ac.in/OCR++/home/</url>
+		<url>http://scholar.google.com</url>
+		<url>http://academic.research.microsoft.com</url>
+		<url>http://www.citeulike.org/</url>
+		<url>https://data.epo.org/publication-server/?lg=en</url>
+		<url>https://www.mendeley.com/</url>
+		<url>http://citeseerx.ist.psu.edu/</url>
+		<url>http://www.tei-c.org/index.xml</url>
+		<url>http://sourceforge.net/projects/pdf2xml/</url>
+		<url>http://tinyurl.com/juxq2bt</url>
+		<url>http://cnergres.iitkgp.ac.in</url>
+		<url>http://cnergres.iitkgp.ac.in/OCR++/home/</url>
+		<url>http://tinyurl.com/hs9oap2</url>
+		<url>https://www.mendeley.com/</url>
 	</URL>
 </UniformResourceLocator>

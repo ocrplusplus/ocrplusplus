@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	{% include "includes/header.html" %}
+
+	<style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #searchbar input[type="text"] {
+            margin: 0 auto;
+            text-align: center;
+            width: 430px;
+            display: block;
+            padding: 20px;
+            font-size: 1.2em;
+            border: solid 2px #333;
+            -webkit-border-radius: 4px;
+               -moz-border-radius: 4px;
+                    border-radius: 4px;
+        }
+		#searchbar {
+			margin: 20px auto;
+            font-family: arial;
+            font-size: 100%;
+            text-align: center;
+		}
+        #searchbar ul{
+            list-style: none;
+            display: inline-block;
+            margin-top: 10px;
+            width: 480px;
+            text-align: left;
+        }
+        #searchbar ul li {
+            display: block;
+            position: relative;
+            margin: 2px auto;
+            padding: 20px;
+            border: solid 2px #fff;
+            background: #f1f1f1;
+            font-size: 0.9em;
+            color: #333;
+            -webkit-border-radius: 4px;
+               -moz-border-radius: 4px;
+                    border-radius: 4px;
+            -webkit-transition: 0.3s;
+               -moz-transition: 0.3s;
+                    transition: 0.3s;
+        }
+        #searchbar ul li a {
+            position: absolute;
+            left: 120px;
+            color: #999;
+        }
+
+        #searchbar ul li:hover, .focused {
+            background: #333;
+            color: #fff;
+
+        }
+
+    </style>
+    <script src="http://fb.me/react-0.10.0.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.10.0.js"></script>
+</head>
+
+
+<body class="nav-md">
+
+	<div class="container body">
+
+		<div class="main_container">
+
+			{% include "includes/leftandtop.html" %}
+			<!-- page content -->
+			<div class="right_col" role="main">
+
+                <div class="">
+                    <div class="page-title">
+                        <div class="title_left">
+                            <h3>The OCR++ Team</h3>
+                        </div>
+
+
+                    </div>
+                    <div class="clearfix"></div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="x_panel">
+                                <div class="x_content">
+
+                                    <div class="row">
+
+                                        <div class="clearfix"></div>
+
+                                        <div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">
+                                            <div class="well profile_view">
+                                                <div class="col-sm-12">
+                                                    <h4 class="brief"><i>Research Scholar</i></h4>
+                                                    <div class="left col-xs-8">
+                                                        <h2>Mayank Singh</h2>
+                                                        <!-- <p>Research Scholar</p> -->
+                                                        <p>Department of Computer Science and Engineering</p><p>IIT Kharagpur</p>
+                                                        <ul class="list-unstyled">
+                                                            <li><i class="fa fa-envelope"></i> <strong>Contact:</strong><li>
+                                                            <li>mayank4490@gmail.com</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="right col-xs-4 text-center">
+                                                        <img src="/static/images/mayank.jpg" alt="" class="img-circle img-responsive">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">
+                                            <div class="well profile_view">
+                                                <div class="col-sm-12">
+                                                    <h4 class="brief"><i>Undergraduate</i></h4>
+                                                    <div class="left col-xs-8">
+                                                        <h2>Barnopriyo Barua</h2>
+                                                        <!--<p>Third Year Undergraduate</p>-->
+                                                        <p>Department of Computer Science and Engineering</p><p>IIT Kharagpur</p>
+                                                        <ul class="list-unstyled">
+                                                            <li><i class="fa fa-envelope"></i> <strong>Contact:</strong><li>
+                                                            <li> barno0695@gmail.com</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="right col-xs-4 text-center">
+                                                        <img src="/static/images/barno.jpg" alt="" class="img-circle img-responsive">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">
+                                            <div class="well profile_view">
+                                                <div class="col-sm-12">
+                                                    <h4 class="brief"><i>Undergraduate</i></h4>
+                                                    <div class="left col-xs-8">
+                                                        <h2>Priyank Palod</h2>
+                                                        <!--<p>Third Year Undergraduate</p>-->
+                                                        <p>Department of Computer Science and Engineering</p><p>IIT Kharagpur</p>
+                                                        <ul class="list-unstyled">
+                                                            <li><i class="fa fa-envelope"></i> <strong>Contact:</strong><li>
+                                                            <li>priyankpalod@gmail.com</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="right col-xs-4 text-center">
+                                                        <img src="/static/images/priyank.jpg" alt="" class="img-circle img-responsive">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">
+                                            <div class="well profile_view">
+                                                <div class="col-sm-12">
+                                                    <h4 class="brief"><i>Undergraduate</i></h4>
+                                                    <div class="left col-xs-8">
+                                                        <h2>Manvi Garg</h2>
+                                                        <!--<p>Third Year Undergraduate</p>-->
+                                                        <p>Department of Geology and Geophysics</p><p>IIT Kharagpur</p>
+                                                        <ul class="list-unstyled">
+                                                            <li><i class="fa fa-envelope"></i> <strong>Contact:</strong><li>
+                                                            <li>manvi.garg171@gmail.com</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="right col-xs-4 text-center">
+                                                        <img src="/static/images/manvi.jpg" alt="" class="img-circle img-responsive">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">
+                                            <div class="well profile_view">
+                                                <div class="col-sm-12">
+                                                    <h4 class="brief"><i>Undergraduate</i></h4>
+                                                    <div class="left col-xs-8">
+                                                        <h2>Sidhartha Satapathy</h2>
+                                                        <!--<p>Third Year Undergraduate</p>-->
+                                                        <p>Department of Computer Science and Engineering</p><p>IIT Kharagpur</p>
+                                                        <ul class="list-unstyled">
+                                                            <li><i class="fa fa-envelope"></i> <strong>Contact:</strong><li>
+                                                            <li>sidharthasatapathy@gmail.com</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="right col-xs-3 text-center">
+                                                        <img src="/static/images/sidhartha.jpg" alt="" class="img-circle img-responsive">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">
+                                            <div class="well profile_view">
+                                                <div class="col-sm-12">
+                                                    <h4 class="brief"><i>Undergraduate</i></h4>
+                                                    <div class="left col-xs-8">
+                                                        <h2>Samuel Bushi</h2>
+                                                        <!--<p>Third Year Undergraduate</p>-->
+                                                        <p>Department of Computer Science and Engineering</p><p>IIT Kharagpur</p>
+                                                        <ul class="list-unstyled">
+                                                            <li><i class="fa fa-envelope"></i> <strong>Contact:</strong><li>
+                                                            <li>samuelsbushi@gmail.com</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="right col-xs-4 text-center">
+                                                        <img src="/static/images/samuel.jpg" alt="" class="img-circle img-responsive">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">
+                                            <div class="well profile_view">
+                                                <div class="col-sm-12">
+                                                    <h4 class="brief"><i>Undergraduate</i></h4>
+                                                    <div class="left col-xs-8">
+                                                        <h2>Kumar Ayush</h2>
+                                                        <!-- <p>Third Year Undergraduate</p>-->
+                                                        <p>Department of Computer Science and Engineering</p><p>IIT Kharagpur</p>
+                                                        <ul class="list-unstyled">
+                                                            <li><i class="fa fa-envelope"></i> <strong>Contact:</strong><li>
+                                                            <li>k.ayush147@gmail.com</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="right col-xs-4 text-center">
+                                                        <img src="/static/images/ayush.jpg" alt="" class="img-circle img-responsive">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        
+
+
+                                        <div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">
+                                            <div class="well profile_view">
+                                                <div class="col-sm-12">
+                                                    <h4 class="brief"><i>Undergraduate</i></h4>
+                                                    <div class="left col-xs-8">
+                                                        <h2>Krishna Sai Rohith</h2>
+                                                        <!--<p>Third Year Undergraduate</p>-->
+                                                        <p>Department of Computer Science and Engineering</p><p>IIT Kharagpur</p>
+                                                        <ul class="list-unstyled">
+                                                            <li><i class="fa fa-envelope"></i> <strong>Contact:</strong><li>
+                                                            <li>krushnasai.rohith07@gmail.com</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="right col-xs-4 text-center">
+                                                        <img src="/static/images/rohith.jpg" alt="" class="img-circle img-responsive">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        
+
+                                        
+
+                                        <div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">
+                                            <div class="well profile_view">
+                                                <div class="col-sm-12">
+                                                    <h4 class="brief"><i>Undergraduate</i></h4>
+                                                    <div class="left col-xs-8">
+                                                        <h2>Tulasi Gamidi</h2>
+                                                        <!--<p>Third Year Undergraduate</p>-->
+                                                        <p>Department of Computer Science and Engineering</p><p>IIT Kharagpur</p>
+                                                        <ul class="list-unstyled">
+                                                            <li><i class="fa fa-envelope"></i> <strong>Contact:</strong><li>
+                                                            <li>tulasi5091@gmail.com</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="right col-xs-4 text-center">
+                                                        <img src="/static/images/tulasi.jpg" alt="" class="img-circle img-responsive">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">
+                                            <div class="well profile_view">
+                                                <div class="col-sm-12">
+                                                    <h4 class="brief"><i>Assistant Professor</i></h4>
+                                                    <div class="left col-xs-8">
+                                                        <h2>Pawan Goyal</h2>
+                                                        <!-- <p>Assistant Professor</p> -->
+                                                        <p>Department of Computer Science and Engineering</p><p>IIT Kharagpur</p>
+                                                        <ul class="list-unstyled">
+                                                            <li><i class="fa fa-envelope"></i> <strong>Contact:</strong><li>
+                                                            <li>pawang@cse.iitkgp.ernet.in</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="right col-xs-4 text-center">
+                                                        <img src="/static/images/pg.jpg" alt="" class="img-circle img-responsive">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4 col-sm-4 col-xs-12 animated fadeInDown">
+                                            <div class="well profile_view">
+                                                <div class="col-sm-12">
+                                                    <h4 class="brief"><i>Associate Professor</i></h4>
+                                                    <div class="left col-xs-8">
+                                                        <h2>Animesh Mukherjee</h2>
+                                                        <!-- <p>Associate Professor</p> -->
+                                                        <p>Department of Computer Science and Engineering</p><p>IIT Kharagpur</p>
+                                                        <ul class="list-unstyled">
+                                                            <li><i class="fa fa-envelope"></i> <strong>Contact:</strong><li>
+                                                            <li>animeshm@gmail.com</li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="right col-xs-4 text-center">
+                                                        <img src="/static/images/am.jpg" alt="" class="img-circle img-responsive">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+				<footer>
+					{% include "includes/footer.html" %}
+				</footer>
+				<!-- /footer content -->
+			</div>
+
+		</div>
+
+	</div>
+
+	<div id="custom_notifications" class="custom-notifications dsp_none">
+		<ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
+		</ul>
+		<div class="clearfix"></div>
+		<div id="notif-group" class="tabbed_notifications"></div>
+	</div>
+
+	<script src="/static/js/bootstrap.min.js"></script>
+
+	<!-- gauge js --><!-- 
+	<script type="text/javascript" src="/static/js/gauge/gauge.min.js"></script>
+	<script type="text/javascript" src="/static/js/gauge/gauge_demo.js"></script> -->
+	<!-- chart js -->
+	<!-- <script src="/static/js/chart/static/js/chart.min.js"></script> -->
+	<!-- bootstrap progress js -->
+	<script src="/static/js/progressbar/bootstrap-progressbar.min.js"></script>
+	<script src="/static/js/nicescroll/jquery.nicescroll.min.js"></script>
+	<!-- icheck -->
+	<!-- <script src="/static/js/icheck/icheck.min.js"></script> -->
+	<!-- daterangepicker --><!-- 
+	<script type="text/javascript" src="/static/js/moment.min.js"></script>
+	<script type="text/javascript" src="/static/js/datepicker/daterangepicker.js"></script> -->
+
+	<script src="/static/js/custom.js"></script>
+
+	<!-- flot js -->
+	<!--[if lte IE 8]><script type="text/javascript" src="/static/js/excanvas.min.js"></script><![endif]--><!-- 
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.js"></script>
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.pie.js"></script>
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.orderBars.js"></script>
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.time.min.js"></script>
+	<script type="text/javascript" src="/static/js/flot/date.js"></script>
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.spline.js"></script>
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.stack.js"></script>
+	<script type="text/javascript" src="/static/js/flot/curvedLines.js"></script>
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.resize.js"></script> -->
+	<script>
+	$(document).ready(function () {
+		// [17, 74, 6, 39, 20, 85, 7]
+		//[82, 23, 66, 9, 99, 6, 2]
+		var data1 = [[gd(2012, 1, 1), 17], [gd(2012, 1, 2), 74], [gd(2012, 1, 3), 6], [gd(2012, 1, 4), 39], [gd(2012, 1, 5), 20], [gd(2012, 1, 6), 85], [gd(2012, 1, 7), 7]];
+
+		var data2 = [[gd(2012, 1, 1), 82], [gd(2012, 1, 2), 23], [gd(2012, 1, 3), 66], [gd(2012, 1, 4), 9], [gd(2012, 1, 5), 119], [gd(2012, 1, 6), 6], [gd(2012, 1, 7), 9]];
+		$("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
+			data1, data2
+		], {
+			series: {
+				lines: {
+					show: false,
+					fill: true
+				},
+				splines: {
+					show: true,
+					tension: 0.4,
+					lineWidth: 1,
+					fill: 0.4
+				},
+				points: {
+					radius: 0,
+					show: true
+				},
+				shadowSize: 2
+			},
+			grid: {
+				verticalLines: true,
+				hoverable: true,
+				clickable: true,
+				tickColor: "#d5d5d5",
+				borderWidth: 1,
+				color: '#fff'
+			},
+			colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+			xaxis: {
+				tickColor: "rgba(51, 51, 51, 0.06)",
+				mode: "time",
+				tickSize: [1, "day"],
+				//tickLength: 10,
+				axisLabel: "Date",
+				axisLabelUseCanvas: true,
+				axisLabelFontSizePixels: 12,
+				axisLabelFontFamily: 'Verdana, Arial',
+				axisLabelPadding: 10
+				//mode: "time", timeformat: "%m/%d/%y", minTickSize: [1, "day"]
+			},
+			yaxis: {
+				ticks: 8,
+				tickColor: "rgba(51, 51, 51, 0.06)",
+			},
+			tooltip: false
+		});
+
+		function gd(year, month, day) {
+			return new Date(year, month - 1, day).getTime();
+		}
+	});
+	</script>
+
+	<!-- worldmap -->
+	<script type="text/javascript" src="/static/js/maps/jquery-jvectormap-2.0.3.min.js"></script>
+	<script type="text/javascript" src="/static/js/maps/gdp-data.js"></script>
+	<script type="text/javascript" src="/static/js/maps/jquery-jvectormap-world-mill-en.js"></script>
+	<script type="text/javascript" src="/static/js/maps/jquery-jvectormap-us-aea-en.js"></script>
+	<!-- pace -->
+	<script src="/static/js/pace/pace.min.js"></script>
+	<script>
+	$(function () {
+		$('#world-map-gdp').vectorMap({
+			map: 'world_mill_en',
+			backgroundColor: 'transparent',
+			zoomOnScroll: false,
+			series: {
+				regions: [{
+					values: gdpData,
+					scale: ['#E6F2F0', '#149B7E'],
+					normalizeFunction: 'polynomial'
+				}]
+			},
+			onRegionTipShow: function (e, el, code) {
+				el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+			}
+		});
+	});
+	</script>
+	<!-- skycons -->
+	<script src="/static/js/skycons/skycons.min.js"></script>
+	<script>
+	var icons = new Skycons({
+		"color": "#73879C"
+	}),
+	list = [
+		"clear-day", "clear-night", "partly-cloudy-day",
+		"partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+		"fog"
+	],
+	i;
+
+	for (i = list.length; i--;)
+	icons.set(list[i], list[i]);
+
+	icons.play();
+	</script>
+
+	<!-- dashbord linegraph -->
+	<script>
+	var doughnutData = [
+		{
+			value: 30,
+			color: "#455C73"
+		},
+		{
+			value: 30,
+			color: "#9B59B6"
+		},
+		{
+			value: 60,
+			color: "#BDC3C7"
+		},
+		{
+			value: 100,
+			color: "#26B99A"
+		},
+		{
+			value: 120,
+			color: "#3498DB"
+		}
+	];
+	var myDoughnut = new Chart(document.getElementById("canvas1").getContext("2d")).Doughnut(doughnutData);
+	</script>
+	<!-- /dashbord linegraph -->
+	<!-- datepicker -->
+	<script type="text/javascript">
+	$(document).ready(function () {
+
+		var cb = function (start, end, label) {
+			console.log(start.toISOString(), end.toISOString(), label);
+			$('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+			//alert("Callback has fired: [" + start.format('MMMM D, YYYY') + " to " + end.format('MMMM D, YYYY') + ", label = " + label + "]");
+		}
+
+		var optionSet1 = {
+			startDate: moment().subtract(29, 'days'),
+			endDate: moment(),
+			minDate: '01/01/2012',
+			maxDate: '12/31/2015',
+			dateLimit: {
+				days: 60
+			},
+			showDropdowns: true,
+			showWeekNumbers: true,
+			timePicker: false,
+			timePickerIncrement: 1,
+			timePicker12Hour: true,
+			ranges: {
+				'Today': [moment(), moment()],
+				'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+				'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+				'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+				'This Month': [moment().startOf('month'), moment().endOf('month')],
+				'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+			},
+			opens: 'left',
+			buttonClasses: ['btn btn-default'],
+			applyClass: 'btn-small btn-primary',
+			cancelClass: 'btn-small',
+			format: 'MM/DD/YYYY',
+			separator: ' to ',
+			locale: {
+				applyLabel: 'Submit',
+				cancelLabel: 'Clear',
+				fromLabel: 'From',
+				toLabel: 'To',
+				customRangeLabel: 'Custom',
+				daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+				monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+				firstDay: 1
+			}
+		};
+		$('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+		$('#reportrange').daterangepicker(optionSet1, cb);
+		$('#reportrange').on('show.daterangepicker', function () {
+			console.log("show event fired");
+		});
+		$('#reportrange').on('hide.daterangepicker', function () {
+			console.log("hide event fired");
+		});
+		$('#reportrange').on('apply.daterangepicker', function (ev, picker) {
+			console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+		});
+		$('#reportrange').on('cancel.daterangepicker', function (ev, picker) {
+			console.log("cancel event fired");
+		});
+		$('#options1').click(function () {
+			$('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+		});
+		$('#options2').click(function () {
+			$('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+		});
+		$('#destroy').click(function () {
+			$('#reportrange').data('daterangepicker').remove();
+		});
+	});
+	</script>
+	<script>
+	NProgress.done();
+	</script>
+										<!-- /datepicker -->
+										<!-- /footer content -->
+</body>
+
+</html>

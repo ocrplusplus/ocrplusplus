@@ -1,5 +1,6 @@
 <?xml version="1.0" ?>
 <Footnotes>
-	<footnote>1 http://python-crfsuite.readthedocs.org/en/latest/ </footnote>
-	<footnote>2 http://nlp.stanford.edu/projects/glove/ </footnote>
+	<footnote>1 http://scholar.google.com 2 http://academic.research.microsoft.com 3 researchgate.net 4 http://www.citeulike.org/ 5 https://data.epo.org/publication-server/?lg=en 6 https://www.mendeley.com/ 7 http://citeseerx.ist.psu.edu/ </footnote>
+	<footnote>10 http://tinyurl.com/juxq2bt </footnote>
+	<footnote>14 https://www.mendeley.com/ </footnote>
 </Footnotes>

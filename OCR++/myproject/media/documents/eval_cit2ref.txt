@@ -1,36 +1,52 @@
 <<cit2ref>>
-Citation : the recognition of the diseases as well as the extraction of their relations with chemical substances in the texts [1]
+Citation : Beel et al., 2011
 Reference  : 
-1. Wei CH, Peng Y, Leaman R, et al. (2015) Overview of the BioCreative V Chemical Disease Relation (CDR) Task, in Proceedings of the fifth BioCreative challenge evaluation workshop, Sevilla, Spain. 
+[Beel et al.2011] Joeran Beel, Bela Gipp, Stefan Langer, Marcel Genzmehr, Erik Wilde, Andreas N  urnberger, and Jim Pitman. 2011. Introducing mr. dlib, a machine-readable digital library. In Proceedings of the 11th annual international ACM/IEEE joint conference on Digital libraries, pages 463464. ACM. 
 <<cit2ref>>
-Citation : obtains one of the best results in the recognition of drugs and chemical names [3, 4]
+Citation : Lopez, 2009
 Reference  : 
-3. Martin Krallinger, Florian Leitner, Obdulia Rabal, Miguel Vazquez, Julen Oyarza- bal, and Alfonso Valencia. 2015. Chemdner: The drugs and chemical names extrac- tion challenge. J Cheminform, 7(Suppl 1):S1. 
+[Lopez2009] Patrice Lopez. 2009. Grobid: Combining automatic bibliographic data recognition and term extrac- tion for scholarship publications. In Research and Advanced Technology for Digital Libraries, pages 473474. Springer. 
 <<cit2ref>>
-Citation : obtains one of the best results in the recognition of drugs and chemical names [3, 4]
+Citation : Lipinski et al. (2013)
 Reference  : 
-4. Isabel Segura Bedmar, Paloma Mart  nez, and Mar  a Herrero Zazo. 2013. Semeval- 2013 task 9: Extraction of drug-drug interactions from biomedical texts. In SemEval- 2013: Semantic Evaluation Exercises Workshop, pages 341350. Association for Com- putational Linguistics. 
+[Lipinski et al.2013] Mario Lipinski, Kevin Yao, Corinna Breitinger, Joeran Beel, and Bela Gipp. 2013. Evaluation of header metadata extraction approaches and tools for scientific pdf documents. In Proceedings of the 13th ACM/IEEE-CS joint conference on Digital libraries, pages 385386. ACM. 
 <<cit2ref>>
-Citation : Recently, word embeddings have been used in NLP task such as named entity recognition or parsing [7, 9]
+Citation : Chakraborty et al., 2016
 Reference  : 
-7. Joseph Turian, Lev Ratinov, and Yoshua Bengio. 2010. Word representations: a simple and general method for semi-supervised learning. In Proceedings of the 48th annual meeting of the association for compu- tational linguistics, pages 384394. Association for Computational Linguistics. 
+[Chakraborty et al.2016] Tanmoy Chakraborty, Amrith Krishna, Mayank Singh, Niloy Ganguly, Pawan Goyal, and Animesh Mukherjee. 2016. Ferosa: A faceted recommendation system for scientific articles. In Pacific-Asia Conference on Knowledge Discovery and Data Mining, pages 528541. Springer. 
 <<cit2ref>>
-Citation : Recently, word embeddings have been used in NLP task such as named entity recognition or parsing [7, 9]
+Citation : Nagy et al., 1992
 Reference  : 
-9. Richard Socher, John Bauer, Christopher D Manning, and Andrew Y Ng. 2013. Parsing with compositional vector grammars. In In Proceedings of the ACL confer- ence. Citeseer. Proceedings of the fifth BioCreative challenge evaluation workshop 
+[Nagy et al.1992] George Nagy, Sharad Seth, and Mahesh Viswanathan. 1992. A prototype document image analysis system for technical journals. Computer, 25(7):1022, July. 
 <<cit2ref>>
-Citation : of word embedding features into a CRF can improve the DNER system. Thus, we trained word embeddings using the Word2Vec tool [5]
+Citation : Dengel and Dubiel (1995)
 Reference  : 
-5. Mikolov, Tomas, Chen, Kai, Corrado, Greg %27 Dean, Jeffrey (2013). Efficient esti- mation of word representations in vector space. arXiv preprint arXiv:1301.3781. 
+[Dengel and Dubiel1995] Andreas Dengel and Frank Dubiel. 1995. Clustering and classification of document structure-a machine learning approach. In Document Analysis and Recognition, 1995., Proceedings of the Third International Conference on, volume 2, pages 587591. IEEE. 
 <<cit2ref>>
-Citation : The CDR task provided a new corpus for the evaluation. This dataset contains pieces of text with disease annotations selected from set [2]
+Citation : Esposito et al. (1995)
 Reference  : 
-2. Davis, Allan Peter, Wiegers, Thomas C., Roberts, Phoebe M., King, Benjamin L., Lay, Jean M., Lennon-Hopkins, Kelley, Sciaky, Daniela, Johnson, Robin, Keat- ing, Heather, Greene, Nigel, Hernandez, Robert, McConnell, Kevin J., Enayetallah, Ahmed E. %27 Mattingly, Carolyn J. (2013). A CTDPfizer collaboration: manual cu- ration of 88 000 scientific articles text mined for drugdisease and drugphenotype interactions. Database, 2013. 
+[Esposito et al.1995] Floriana Esposito, Donato Malerba, and Giovanni Semeraro. 1995. A knowledge-based approach to the layout analysis. In Document Analysis and Recognition, 1995., Proceedings of the Third Inter- national Conference on, volume 1, pages 466471. IEEE. 
 <<cit2ref>>
-Citation : embedding features provided by the Word2Vec tool. In particular, we used a python binding 1 to CRFsuite [6]
+Citation : Han et al., 2003
 Reference  : 
-6. Naoaki Okazaki, CRFsuite: a fast implementation of Conditional Random Fields (CRFs), http://www.chokkan.org/software/crfsuite/, 2007. 
+[Han et al.2003] Hui Han, C Lee Giles, Eren Manavoglu, Hongyuan Zha, Zhenyue Zhang, Edward Fox, et al. 2003. Automatic document metadata extraction using support vector machines. In Digital Libraries, 2003. Proceedings. 2003 Joint Conference on, pages 3748. IEEE. 
 <<cit2ref>>
-Citation : BioCreative V track For this task, a pipeline in GATE [8]
+Citation : Councill et al., 2008
 Reference  : 
-8. H. Cunningham, V. Tablan, A. Roberts, K. Bontcheva (2013) Getting More Out of Biomedical Documents with GATEs Full Lifecycle Open Source Text Analytics. PLoS Comput Biol 9(2): e1002854. doi:10.1371/journal.pcbi.1002854 - http://tinyurl.com/gate-life-sci/ 
+[Councill et al.2008] Isaac G Councill, C Lee Giles, and Min-Yen Kan. 2008. Parscit: an open-source crf reference string parsing package. In LREC. 
+<<cit2ref>>
+Citation : Luong et al., 2012
+Reference  : 
+[Luong et al.2012] Minh-Thang Luong, Thuy Dung Nguyen, and Min-Yen Kan. 2012. Logical structure recovery in scholarly articles with rich document features. Multimedia Storage and Retrieval Innovations for Digital Library Systems, page 270. 
+<<cit2ref>>
+Citation : Lafferty et al., 2001
+Reference  : 
+[Lafferty et al.2001] John D. Lafferty, Andrew McCallum, and Fernando C. N. Pereira. 2001. Conditional random fields: Probabilistic models for segmenting and labeling sequence data. In Proceedings of the Eighteenth In- ternational Conference on Machine Learning, ICML 01, pages 282289, San Francisco, CA, USA. Morgan Kaufmann Publishers Inc. 
+<<cit2ref>>
+Citation : Granitzer et al. (2012)
+Reference  : 
+[Granitzer et al.2012] Michael Granitzer, Maya Hristakeva, Kris Jack, and Robert Knight. 2012. A comparison of metadata extraction techniques for crowdsourced bibliographic metadata management. In Proceedings of the 27th Annual ACM Symposium on Applied Computing, pages 962964. ACM. 
+<<cit2ref>>
+Citation : Lipinski et al. (2013)
+Reference  : 
+[Lipinski et al.2013] Mario Lipinski, Kevin Yao, Corinna Breitinger, Joeran Beel, and Bela Gipp. 2013. Evaluation of header metadata extraction approaches and tools for scientific pdf documents. In Proceedings of the 13th ACM/IEEE-CS joint conference on Digital libraries, pages 385386. ACM. 

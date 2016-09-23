@@ -1,2 +1,2 @@
 <<title>>
-Title : Word Embedding Clustering for Disease Named Entity Recognition 
+Title : OCR++: A Robust Framework For Information Extraction from Scholarly Articles 

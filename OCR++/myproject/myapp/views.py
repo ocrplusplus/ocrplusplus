@@ -34,10 +34,11 @@ def runScript():
     # subprocess.call("clear", shell=True)
     subprocess.call("mv " + directory + fn + " " + directory + "input.pdf", shell=True)
     subprocess.call("rm -r " + directory + "eval_*.txt", shell=True)
-    # subprocess.call("rm -r /var/www/html/media/documents/*",shell=True)
-    # subprocess.call("cp " + directory + "input.pdf /var/www/html/media/documents/input.pdf", shell=True)
-    # subprocess.call("cp -r " + directory + "eval* /var/www/html/media/documents/",shell=True)
-    # subprocess.call("cp -r " + directory + "output.xml /var/www/html/media/documents/",shell=True)
+    subprocess.call("rm -r /var/www/html/media/documents/*",shell=True)
+    subprocess.call("cp " + directory + "input.pdf /var/www/html/media/documents/", shell=True)
+    subprocess.call("cp -r " + directory + "paper/* /var/www/html/media/documents/", shell=True)
+    subprocess.call("cp -r " + directory + "eval* /var/www/html/media/documents/",shell=True)
+    subprocess.call("cp -r " + directory + "output.xml /var/www/html/media/documents/",shell=True)
     # subprocess.call("python " + directory + "main_script_batch.py", shell=True)
     subprocess.call(directory + "ShellScript.sh",shell=True)
     return HttpResponse("Done")
@@ -78,7 +79,7 @@ def title(request):
     return render(request, "title.html")
 
 def home(request):
-    return render(request, "home.html")
+    return render(request, "home.html", {"paper_name" : "../../media/documents/input.pdf"})
 
 def email(request):
     return render(request, "email.html")

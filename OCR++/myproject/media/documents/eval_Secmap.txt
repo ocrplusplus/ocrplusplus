@@ -1,5 +1,47 @@
 <<section>>
-Chunks: Word Embedding Clustering for Disease ... feature set of each word.
+Chunks: OCR++: A Robust Framework For ... Technology, Kharagpur, WB, India mayank.singh@cse.iitkgp.ernet.in
 <<section>>
-Heading: 2 Method 
-Chunks: In this section, we describe ... dataset (Runs in bold). 304
+Heading: Abstract 
+Chunks: This paper proposes OCR++, an ... is accessible online at http://cnergres.iitkgp.ac.in/OCR++/home/.
+<<section>>
+Heading: 1 Introduction 
+Chunks: Obtaining structured data from documents ... token. 8 http://www.tei-c.org/index.xml 9 http://sourceforge.net/projects/pdf2xml/
+<<section>>
+Heading: 2.3 Author name extraction 
+Chunks: In this sub-task, we use ... together as the middle name.
+<<section>>
+Heading: 2.4 Author e-mail extraction 
+Chunks: An e-mail consists of a ... written rules to extract e-mails.
+<<section>>
+Heading: 2.5 Author affiliation extraction 
+Chunks: We use hand written rules ... College, Institute, superscript character etc.
+<<section>>
+Heading: 2.6 Headings and section mapping 
+Chunks: We employ CRF model to ... chunks to train the CRF.
+<<section>>
+Heading: 2.7 URL 
+Chunks: We extract URLs using a ... described below: http[s]?://(?:[a-zA-Z]|[0-9]|[\$-_@.&+]|[! * \(\),]|(?:\%[0-9a-fA-F][0-9a-fA-F]))
+<<section>>
+Heading: 2.8 Footnote 
+Chunks: Most of the footnotes have ... bold tokens from such chunks.
+<<section>>
+Heading: 2.10 Citations and references 
+Chunks: The bibliography extraction task includes ... . * ?[(. * ?)]
+<<section>>
+Heading: 2.11 Mapping tasks 
+Chunks: Connecting author name to e-mail: ... publication and authors last name.
+<<section>>
+Heading: 3 Results and discussion 
+Chunks: Following an evaluation carried out ... in terms of processing time.
+<<section>>
+Heading: 3.1 Effect of formatting style on precision 
+Chunks: We select International Conference on ... six different years for COLING.
+<<section>>
+Heading: 3.2 Processing time 
+Chunks: To compare the processing times, ... time of GROBID and OCR++.
+<<section>>
+Heading: 3.3 User experience study 
+Chunks: To conduct a user experience ... performed better than Mendeley Desktop.
+<<section>>
+Heading: 7 Conclusions 
+Chunks: The goal of this work ... technical journals. Computer, 25(7):1022, July.
