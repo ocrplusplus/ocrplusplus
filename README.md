@@ -9,8 +9,10 @@ NOTE : The tool works only on Linux-based systems
       git clone https://github.com/ocrplusplus/ocrplusplus
       cd ocrplusplus
       mkdir -p /var/www/html/media
+      mkdir -p /var/www/html/media/documents
       cp -r OCR++ /var/www/html/ 
       ```
+  - If you are using an apache server, run this command too
 
 ##### Usage:
   - ###### With localhost as server :
