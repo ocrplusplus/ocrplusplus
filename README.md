@@ -1,4 +1,4 @@
-# OCR++ : A Framework to extract information from Scholastic Articles 
+# OCR++ : A Framework to extract information from Scholarly Articles 
 
 NOTE : The tool works only on Linux-based systems
 
@@ -12,7 +12,6 @@ NOTE : The tool works only on Linux-based systems
       mkdir -p /var/www/html/media/documents
       cp -r OCR++ /var/www/html/ 
       ```
-  - If you are using an apache server, run this command too
 
 ##### Usage:
   - ###### With localhost as server :
