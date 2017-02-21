@@ -8,9 +8,6 @@ Last name : Barua
 First name : Priyank
 Last name : Palod
 <<name>>
-First name : Manvi
-Last name : Garg
-<<name>>
 First name : Sidhartha
 Last name : Satapathy
 <<name>>

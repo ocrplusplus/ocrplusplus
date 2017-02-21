@@ -2,10 +2,19 @@
 Chunks: OCR++: A Robust Framework For ... Technology, Kharagpur, WB, India mayank.singh@cse.iitkgp.ernet.in
 <<section>>
 Heading: Abstract 
-Chunks: This paper proposes OCR++, an ... is accessible online at http://cnergres.iitkgp.ac.in/OCR++/home/.
+Chunks: This paper proposes OCR++, an ... is accessible online at http://www.cnergres.iitkgp.ac.in/OCR++/home/.
 <<section>>
 Heading: 1 Introduction 
-Chunks: Obtaining structured data from documents ... token. 8 http://www.tei-c.org/index.xml 9 http://sourceforge.net/projects/pdf2xml/
+Chunks: Obtaining structured data from documents ... available from the ACL anthology.
+<<section>>
+Heading: 2 Framework overview 
+Chunks: OCR++ is an extraction framework ... each extraction task in detail.
+<<section>>
+Heading: 2.1 Chunking 
+Chunks: As a first step, we ... such as font-size and bold-text.
+<<section>>
+Heading: 2.2 Title extraction 
+Chunks: We train a CRF model ... in present and previous token.
 <<section>>
 Heading: 2.3 Author name extraction 
 Chunks: In this sub-task, we use ... together as the middle name.
@@ -35,13 +44,24 @@ Heading: 3 Results and discussion
 Chunks: Following an evaluation carried out ... in terms of processing time.
 <<section>>
 Heading: 3.1 Effect of formatting style on precision 
-Chunks: We select International Conference on ... six different years for COLING.
+Chunks: We select International Conference on ... a lower recall before 2000.
 <<section>>
 Heading: 3.2 Processing time 
 Chunks: To compare the processing times, ... time of GROBID and OCR++.
 <<section>>
 Heading: 3.3 User experience study 
-Chunks: To conduct a user experience ... performed better than Mendeley Desktop.
+Chunks: To conduct a user experience ... felt it to be moderate.
+<<section>>
+Heading: 4 Use Cases 
+<<section>>
+Heading: 4.1 Curation of dataset links 
+Chunks: With the community experiencing a ... 2014 78 141 12 0.67
+<<section>>
+Heading: 4.2 Section-wise citation distribution 
+Chunks: Citation instance count plays a ... performed better than Mendeley Desktop.
 <<section>>
 Heading: 7 Conclusions 
-Chunks: The goal of this work ... technical journals. Computer, 25(7):1022, July.
+Chunks: The goal of this work ... the functionality for non-English articles.
+<<section>>
+Heading: References 
+Chunks: Joeran Beel, Bela Gipp, Stefan ... technical journals. Computer, 25(7):1022, July.

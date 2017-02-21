@@ -1,4 +1,9 @@
-# author = "barno"
+#####################################################
+# Code for extracting and printing author names     #
+# Author: Barnopriyo Barua                          #
+# Email: barno0695@gmail.com                        #
+#####################################################
+
 import nltk
 import unicodedata
 import subprocess
@@ -34,7 +39,6 @@ US_States = ["Los Angeles", "Alabama", "Alaska", "Arizona", "Arkansas", "Califor
              "Missouri", "Montana", "Nebraska", "Nevada", "Hampshire", "Jersey", "York", "Carolina", "Dakota", "Ohio",
              "Oklahoma", "Oregon", "Pennsylvania", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
              "Wisconsin", "Wyoming"]
-# US_States = []
 
 Exceptional_names = ["MSN", "IIT", "KU Leuven", "INSEAD", "ESCP Europe", "Sciences Po Paris", "ETH Zurich", "EPFL",
                      "HKUST", "CAIDA", "BITS", "UC Berkeley", "Facebook", "Google", "Amazon", "Twitter", "MIT",
@@ -51,21 +55,14 @@ SectionHeads = ["Abstract", "ABSTRACT", "Introduction", "INTRODUCTION", "REFEREN
 # RUN THIS BEFORE CALLING PRINTAUTH
 # crf_test -m $Directory/files/model_all_com.txt $Directory/test_aut.txt > $Directory/final_aut.txt
 
-def checkintitle(aut, content):
-    # with open('temptitle.txt', 'r') as f:
-    # content = ""
-    # for line in f:
-    #     content = content + line
-    if aut in content:
+# If aut is in title
+def checkintitle(aut, title):
+    if aut in title:
         return 1
     return 0
 
-
+# If aut is in affiliation
 def checkinaffil(aut, input_AllAff):
-    # with open('input_AllAffiliations.txt', 'r') as f:
-    # content = ""
-    # for line in f:
-    #     content = content + line
     if aut in input_AllAff:
         return 1
     return 0
@@ -75,14 +72,11 @@ def printAuthor(title_xml, input_Affl):
     subprocess.call("crf_test -m model_all_com.txt test_aut.txt > final_aut.txt", shell=True)
     directory = '/var/www/html/OCR++/myproject/media/documents/'
 
-    
-
     flag = "0"  # to check if a title is already going on
     end = 0
     titl = 0;
     affils = []
     auts = []
-    # with open(directory + 'input_AllAffiliations.txt', 'r') as f:
     input_Affl = ET.tostring(input_Affl)
     aff_lines = input_Affl.split('\n')
     for line in aff_lines:
@@ -92,9 +86,6 @@ def printAuthor(title_xml, input_Affl):
         line = line.strip('\n')
         affils.append(line)
 
-
-
-    # fout = open(directory + 'TitleAuthor.xml', 'a')
     fout = title_xml
 
     tokenss = []

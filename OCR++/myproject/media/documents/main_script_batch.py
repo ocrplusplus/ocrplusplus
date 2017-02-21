@@ -15,7 +15,7 @@ import xml.etree.ElementTree as ET
 import Secmapping
 import printAuthor
 import printnameformap
-import email_matching
+import authorEmailMapping
 import cit_final
 import footnotes
 import tables_figures
@@ -192,8 +192,8 @@ def runScript():
         #print "Got title_author_xml"
         try:
             startTime = time.time()
-            name_for_map = printnameformap.genFile(title_author_xml)
-            email_matching.matching_main(name_for_map,email_str_for_Map)
+            name_for_map = printnameformap.genAuthorFileForMap(title_author_xml)
+            email_matching.authorEmailMap(name_for_map,email_str_for_Map)
             mappingtime += time.time()-startTime
         except Exception, inst:
             print "Exception : In Email_Author_Matching"

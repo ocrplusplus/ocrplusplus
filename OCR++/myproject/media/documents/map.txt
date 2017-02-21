@@ -1,2 +1,6 @@
 <email_author>
+	<map>
+		MayankSingh
+		mayank.singh@cse.iitkgp.ernet.in
+	</map>
 </email_author>

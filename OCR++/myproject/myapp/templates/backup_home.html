@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<META HTTP-EQUIV="refresh" CONTENT="1000000">
+<head>
+	{% include "includes/header.html" %}
+
+	<style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        /*body {
+            margin: 100px auto;
+            font-family: arial;
+            font-size: 100%;
+            text-align: center;
+        }*/
+        #searchbar input[type="text"] {
+            margin: 0 auto;
+            text-align: center;
+            width: 430px;
+            display: block;
+            padding: 20px;
+            font-size: 1.2em;
+            border: solid 2px #333;
+            -webkit-border-radius: 4px;
+               -moz-border-radius: 4px;
+                    border-radius: 4px;
+        }
+		#searchbar {
+			margin: 20px auto;
+            font-family: arial;
+            font-size: 100%;
+            text-align: center;
+		}
+        #searchbar ul{
+            list-style: none;
+            display: inline-block;
+            margin-top: 10px;
+            width: 480px;
+            text-align: left;
+        }
+        #searchbar ul li {
+            display: block;
+            position: relative;
+            margin: 2px auto;
+            padding: 20px;
+            border: solid 2px #fff;
+            background: #f1f1f1;
+            font-size: 0.9em;
+            color: #333;
+            -webkit-border-radius: 4px;
+               -moz-border-radius: 4px;
+                    border-radius: 4px;
+            -webkit-transition: 0.3s;
+               -moz-transition: 0.3s;
+                    transition: 0.3s;
+        }
+        #searchbar ul li a {
+            position: absolute;
+            left: 120px;
+            color: #999;
+        }
+
+        #searchbar ul li:hover, .focused {
+            background: #333;
+            color: #fff;
+
+        }
+
+    </style>
+    <!-- <script src="http://fb.me/react-0.10.0.js"></script>
+    <script src="http://fb.me/JSXTransformer-0.10.0.js"></script> -->
+</head>
+
+
+<body class="nav-md">
+
+	<div class="container body">
+
+
+		<div class="main_container">
+
+			{% include "includes/leftandtop.html" %}
+			<!-- <script>
+			$.ajax({
+				url: '../userdetails/',
+				type: 'GET',
+				success: function(response) {
+					console.log(response['name'])
+					document.getElementById('name').innerHTML = response['name']
+					document.getElementById('name1').innerHTML = response['name'].split()[0]
+					document.getElementById('name2').innerHTML = response['name']
+				},
+				error: function(error) {
+					console.log(error);
+				},
+
+			});
+			</script> -->
+			<!-- page content -->
+			<div class="right_col" role="main">
+
+				<div class="row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="dashboard_graph">
+
+							<div class="row x_title">
+								<div class="col-md-6">
+									<h3>Upload file</h3>
+								</div>
+							</div>
+
+							<div id="header">
+								<form action="../list/" method="post" enctype="multipart/form-data">
+									{% csrf_token %}
+									{{ form.non_field_errors }}
+									{{ form.docfile.label_tag }} {{ form.docfile.help_text }}
+									{{ form.docfile.errors }}
+									{{ form.docfile }}
+									<label for="id_docfile">Select a file:</label>
+
+									<input id="id_docfile" name="docfile" type="file">
+									<br>
+									<p><input id="submit" type="submit" value="Upload" /></p>
+								</form>
+
+								<!-- <form action="../list/" method="post" enctype="multipart/form-data">
+									<input name="csrfmiddlewaretoken" value="9onHPt3K6XHWcLShYSAQK3Wxb4Q6QUNz" type="hidden">
+
+									<label for="id_docfile">Select a file:</label>
+
+									<input id="id_docfile" name="docfile" type="file">
+									<br>
+									<button id="submit" class="btn btn-success btn-sm" type="submit">Upload</button>
+								</form> -->
+							</div>
+
+
+
+							<div class="clearfix"></div>
+						</div>
+
+
+					</div>
+
+				</div>
+				<br />
+				<div class = "row">
+					<div class="col-md-12 col-sm-12 col-xs-12">
+				        <embed class = "x_panel" src={{paper_name}} height="500px">
+					</div>
+				</div>
+				<!-- footer content -->
+				<footer>
+					{% include "includes/footer.html" %}
+				</footer>
+				<!-- /footer content -->
+			</div>
+
+		</div>
+
+	</div>
+
+	<div id="custom_notifications" class="custom-notifications dsp_none">
+		<ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group">
+		</ul>
+		<div class="clearfix"></div>
+		<div id="notif-group" class="tabbed_notifications"></div>
+	</div>
+
+	<script src="/static/js/bootstrap.min.js"></script>
+
+	<!-- gauge js --><!-- 
+	 <script type="text/javascript" src="/static/js/gauge/gauge.min.js"></script>
+	<script type="text/javascript" src="/static/js/gauge/gauge_demo.js"></script> --> 
+	<!-- chart js --><!-- 
+	<script src="/static/js/chart/static/js/chart.min.js"></script> -->
+	<!-- bootstrap progress js -->
+	<script src="/static/js/progressbar/bootstrap-progressbar.min.js"></script>
+	<script src="/static/js/nicescroll/jquery.nicescroll.min.js"></script>
+	<!-- icheck -->
+	<!-- <script src="/static/js/icheck/icheck.min.js"></script> -->
+	<!-- daterangepicker -->
+	<!-- <script type="text/javascript" src="/static/js/moment.min.js"></script>
+	<script type="text/javascript" src="/static/js/datepicker/daterangepicker.js"></script> -->
+
+	<script src="/static/js/custom.js"></script>
+
+	<!-- flot js -->
+	<!--[if lte IE 8]><script type="text/javascript" src="/static/js/excanvas.min.js"></script><![endif]-->
+	<!-- 
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.js"></script>
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.pie.js"></script>
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.orderBars.js"></script>
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.time.min.js"></script>
+	<script type="text/javascript" src="/static/js/flot/date.js"></script>
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.spline.js"></script>
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.stack.js"></script>
+	<script type="text/javascript" src="/static/js/flot/curvedLines.js"></script>
+	<script type="text/javascript" src="/static/js/flot/jquery.flot.resize.js"></script> -->
+
+
+	<!-- worldmap --><!-- 
+	<script type="text/javascript" src="/static/js/maps/jquery-jvectormap-2.0.3.min.js"></script>
+	<script type="text/javascript" src="/static/js/maps/gdp-data.js"></script>
+	<script type="text/javascript" src="/static/js/maps/jquery-jvectormap-world-mill-en.js"></script>
+	<script type="text/javascript" src="/static/js/maps/jquery-jvectormap-us-aea-en.js"></script> -->
+	<!-- pace -->
+	 <!-- <script src="/static/js/pace/pace.min.js"></script> -->
+
+	<!-- skycons -->
+	<script src="/static/js/skycons/skycons.min.js"></script>
+	<!-- <script>
+		var icons = new Skycons({
+			"color": "#73879C"
+		}),
+		list = [
+			"clear-day", "clear-night", "partly-cloudy-day",
+			"partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+			"fog"
+		],
+		i;
+
+		for (i = list.length; i--;)
+		icons.set(list[i], list[i]);
+
+		icons.play();
+	</script> -->
+
+										<!-- dashbord linegraph -->
+	<!-- <script>
+		var doughnutData = [
+			{
+				value: 30,
+				color: "#455C73"
+			},
+			{
+				value: 30,
+				color: "#9B59B6"
+			},
+			{
+				value: 60,
+				color: "#BDC3C7"
+			},
+			{
+				value: 100,
+				color: "#26B99A"
+			},
+			{
+				value: 120,
+				color: "#3498DB"
+			}
+		];
+		var myDoughnut = new Chart(document.getElementById("canvas1").getContext("2d")).Doughnut(doughnutData);
+	</script> -->
+<!-- /dashbord linegraph -->
+<!-- datepicker -->
+
+	<script>
+		// NProgress.done();
+	</script>
+<!-- /datepicker -->
+<!-- /footer content -->
+</body>
+
+</html>

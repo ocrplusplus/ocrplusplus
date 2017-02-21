@@ -1,14 +1,24 @@
 <<table>>
-Table 1: Generic set of regular expressions for citation instance identification. Here, AN represent author name, Y represent year and I represent reference index within citation instance.
+Table 1: Generic set of regular expressions for citation instance identification. Here, AN represents author name, Y represents year and I represent reference index within citation instance.
 <<table>>
-Table 3: Micro-average accuracy for GROBID and OCR++ for different publishing styles.
+Table 2: Micro-average F-score for GROBID and OCR++ for different extractive subtasks.
+<<table>>
+Table 2 presents comparative results for GROBID and OCR++. It shows that in terms of precision, OCR++ outperforms GROBID in all the sub-tasks. Recall is higher for GROBID for some of the meta- data extraction tasks. In OCR++, since title extraction depends on the first extracted chunk from section extraction, the errors in chunk extraction lead to low recall in title extraction. Similar problem results in lower recall in author name extraction. Due to the presence of variety of white space length between author first, middle and last name in various formats, we observe low recall overall in author name ex- traction subtasks. We also found that in many cases author-emails are quite different from author names resulting in lower recall for author-email extraction subtask. OCR++ outperforms GROBID in majority of the structural information extraction subtasks in terms of both precision and recall. We observe that GROBID performs poorly for table heading extraction due to intermingling of table text with heading tokens and unnumbered footnotes. A similar argument holds for the figure heading as well. URL extrac- tion feature is not implemented in GROBID, while OCR++ extracts it very accurately. Similarly, poor
+<<table>>
+Table 3: Micro-average F-score for GROBID and OCR++ for different publishing styles.
+<<table>>
+Table 4: Micro-average accuracy for GROBID and OCR++ bibliography extraction tasks.
+<<table>>
+Table 5: Proceedings dataset extraction statistics: Article count represents total number of articles present in the proceedings. Total links and Dataset links correspond to total number of unique URLs and total number of unique dataset links extracted by OCR++ respectively. Precision measures correct number of dataset links.
+<<table>>
+Table 6: Specific to generic section mapping
 
 <<figure>>
 Figure 1: Screenshot of pdf2xml tool output.
 <<figure>>
-Figure 2: OCR++ framework overview and user interface
-<<figure>>
 Figure 2(a) describes the sub-task dependencies in OCR++. The web interface of the tool is shown in Figure 2(b). We leverage the rich information present in the XML files to perform extraction tasks. Although each extraction task described below is performed using machine learning models as well as hand written rules/heuristics, we only include the better performing scheme in our framework. Next, we describe each extraction task in detail.
+<<figure>>
+Figure 2: OCR++ framework overview and user interface
 <<figure>>
 Figure and table heading extraction is performed after chunking (described in Section 2.1). If the chunk starts with the word FIGURE or Figure or FIG. or Fig., then the chunk represents a figure heading. Similarly, if the chunk starts with the word Table or TABLE, then the chunk represents a table heading. However, it has been observed that table contents are also present in the chunk. Therefore, we use a feature bold font to extract bold tokens from such chunks.
 <<figure>>
