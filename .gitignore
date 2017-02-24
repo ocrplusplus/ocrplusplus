@@ -1,2 +1,5 @@
 *.pyc
 *.sqlite3
+*eval_*.txt
+*.xml
+*input.pdf

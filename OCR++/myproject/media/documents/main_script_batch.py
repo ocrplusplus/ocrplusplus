@@ -191,16 +191,16 @@ def runScript():
         
         #print "Got title_author_xml"
         try:
-            startTime = time.time()
-            name_for_map = printnameformap.genAuthorFileForMap(title_author_xml)
-            email_matching.authorEmailMap(name_for_map,email_str_for_Map)
-            mappingtime += time.time()-startTime
+           startTime = time.time()
+           name_for_map = printnameformap.genAuthorFileForMap(title_author_xml)
+           authorEmailMapping.authorEmailMap(name_for_map,email_str_for_Map)         
+           mappingtime += time.time()-startTime
         except Exception, inst:
-            print "Exception : In Email_Author_Matching"
-            #print e
-            print type(inst)     # the exception instance
-            print inst.args      # arguments stored in .args
-            print inst           # __str__ allows args to be printed directly
+           print "Exception : In Email_Author_Matching"
+           #print e
+           print type(inst)     # the exception instance
+           print inst.args      # arguments stored in .args
+           print inst           # __str__ allows args to be printed directly
 
         try:
             xml = generate_xml.main()

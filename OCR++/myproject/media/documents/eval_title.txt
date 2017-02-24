@@ -1,2 +1,0 @@
-<<title>>
-Title : OCR++: A Robust Framework For Information Extraction from Scholarly Articles 

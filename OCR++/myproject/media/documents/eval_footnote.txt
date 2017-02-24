@@ -1,8 +1,0 @@
-<<footnote>>
-1 http://scholar.google.com 2 http://academic.research.microsoft.com 3 https://www.researchgate.net 4 http://www.citeulike.org/ 5 https://data.epo.org/publication-server 6 https://www.mendeley.com 7 http://citeseerx.ist.psu.edu/ This work is licenced under a Creative Commons Attribution 4.0 International Licence. Licence details: http:// creativecommons.org/licenses/by/4.0/
-<<footnote>>
-8 http://www.tei-c.org/index.xml 9 URL: http://sourceforge.net/projects/pdf2xml/. We employ version 1.2.7 developed for 64 bit Linux systems.
-<<footnote>>
-10 http://tinyurl.com/juxq2bt
-<<footnote>>
-14 https://www.mendeley.com/

@@ -58,7 +58,7 @@ def authorEmailMap(inputNames, inputMails):
 					word = unicodedata.normalize('NFKD',word.decode("utf-8","ignore")).encode("ascii","ignore")
 					tempNameList.append(word)
 				except:
-					print "ERROR: Normalization error in ", word
+					print "ERROR: Normalization error"
 			authorList.append(tempNameList)
 			tempPos = tempPos + 1
 
@@ -105,7 +105,7 @@ def authorEmailMap(inputNames, inputMails):
 					if word.lower() in user:
 							mapOutputText += "\t<map>\n\t\t"
 							for tempWord in tempAuthor:
-								mapOutputText += tempWord
+								mapOutputText += tempWord + " "
 							mapOutputText += "\n\t\t" + mailDict[email] + "\n"
 							mapOutputText += "\t</map>\n"
 							authorList.remove(tempAuthor)
@@ -142,7 +142,7 @@ def authorEmailMap(inputNames, inputMails):
 					if tempPos == len(user):
 						mapOutputText += "\t<map>\n\t\t"
 						for word in tempAuthor:
-							mapOutputText += word
+							mapOutputText += word + " "
 						mapOutputText += "\n\t\t" + mailDict[email] + "\n"
 						mapOutputText += "\t</map>\n"
 						authorList.remove(tempAuthor)

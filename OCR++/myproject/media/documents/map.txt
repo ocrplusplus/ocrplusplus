@@ -1,6 +1,18 @@
 <email_author>
 	<map>
-		MayankSingh
-		mayank.singh@cse.iitkgp.ernet.in
+		Ben Trovato 
+		trovato@corporation.com
+	</map>
+	<map>
+		Lawrence P. Leipuner 
+		lleipuner@researchlabs.org
+	</map>
+	<map>
+		Sean Fogarty 
+		fogartys@amesres.org
+	</map>
+	<map>
+		Charles Palmer 
+		cpalmer@prl.com
 	</map>
 </email_author>

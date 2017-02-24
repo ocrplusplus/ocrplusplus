@@ -17,7 +17,7 @@ SectionHeads = ["ABSTRACT", "INTRODUCTION", "REFERENCES"]
 
 small_cases = ["of", "for", "and", "in", "at", "do", "a", "di", "de", "the"]
 
-directory= '/var/www/html/OCR++/myproject/media/documents/'
+directory= '/var/www/html/OCR++/myproject/media/documents/'#raw_input()+"/"#/home/priyank/Desktop/Projects/pdfs/"
 a_file = directory + "input_2.xml"
 
 AffiliationOutputFile = "0\t0\t0\n"
@@ -69,6 +69,7 @@ def isEmail(y):
 def FindAffiliation(block,fs,max_font_size):
     global AffiliationOutputFile
     ret = "0"
+    #block = block.replace(',','#$#')
     t = block.split('#$#')
     aff = "0"
     flag = False
@@ -85,13 +86,18 @@ def FindAffiliation(block,fs,max_font_size):
                 if len(i)>0:
                     if isEmail(i) == "1":
                         aff = "0"
+                        # AffiliationOutputFile.write("0\t0\t0\n")
                         AffiliationOutputFile = AffiliationOutputFile + "0\t0\t0\n"
                     else:
+                        # AffiliationOutputFile.write((i+"\t").encode("utf-8"))
+                        # AffiliationOutputFile.write(("1\t").encode("utf-8"))
+                        # AffiliationOutputFile.write(("0\n").encode("utf-8"))
                         AffiliationOutputFile = AffiliationOutputFile + (i+"\t").encode("utf-8")
                         AffiliationOutputFile = AffiliationOutputFile + ("1\t").encode("utf-8")
                         AffiliationOutputFile = AffiliationOutputFile + ("0\n").encode("utf-8")
                     if p == "0" and (i.replace(".","") in country_list or i in US_States):
                         aff = "0"
+                        # AffiliationOutputFile.write("0\t0\t0\n")
                         AffiliationOutputFile = AffiliationOutputFile + "0\t0\t0\n"
     return ret
 
@@ -114,6 +120,10 @@ def cutShort(stri):
         finalStrList = ""
     finalStrList = finalStrList[i:]
     return finalStrList.strip()
+
+
+
+
 
 
 def aff_main(xroot, max_font_size):
@@ -200,14 +210,62 @@ def aff_main(xroot, max_font_size):
             if min_result_ys>float(tokens.attrib['y']):
                 min_result_ys = float(tokens.attrib['y'])
                         
+        # AffiliationOutputFile.write("0\t0\t0\n")
         AffiliationOutputFile = AffiliationOutputFile + "0\t0\t0\n"
 
     #############################################################################################################################
 
+    #print AffiliationOutputFile
     w_flag = "0"   # to check if a Affiliation is already going on
+    # directory= ''#raw_input()+"/"#/home/priyank/Desktop/Projects/pdfs/"
+    # filetoread = directory + "input_parse.txt"
     filetoread = AffiliationOutputFile
 
     
+    '''
+    inp_allaff_str = ''
+    #outfile.write("<" + (filetoread.split(".")[0]).split("/")[-1] + ">\n")
+    # with open(filetoread,'r') as f:
+    stri = ""
+    lines = filetoread.split('\n')
+    for line in lines:
+        abc = line.split()
+
+        if len(abc) >= 1:  # if not a blank line
+
+            if abc[1] == "1":   #output column
+                if w_flag == "0":  #if start of Affiliation
+                    #outfile.write("\n\t<Affiliation>\n\t\t")
+                    inp_allaff_str += "\n\t<Affiliation>\n\t\t"
+                stri += ((abc[0].strip(',')).strip('.') + ' ')
+                w_flag = "1"
+            else:
+                if w_flag == "1":
+                    stri = cutShort(stri)
+                    if stri.find(" ")==-1 and stri.isupper()==False: #Only one word which isn't an abbreviation => Can't be an affiliation [Note: May fail in cases like "Facebook", "Google", "Amazon" etc]
+                        #outfile.seek(-18,os.SEEK_END)
+                        #outfile.truncate()
+                        inp_allaff_str = inp_allaff_str[:-18]
+                    elif stri.isdigit() and len(stri)>=5:
+                        #outfile.seek(-35,os.SEEK_END)
+                        #outfile.truncate()
+                        inp_allaff_str = inp_allaff_str[:-35]
+                        #outfile.write(" " + stri)
+                        inp_allaff_str += " " + stri
+                        #outfile.write("\n\t</Affiliation>\n")
+                        inp_allaff_str += "\n\t</Affiliation>\n"
+                    else:
+                        #outfile.write(stri)
+                        inp_allaff_str += stri
+                        #outfile.write("\n\t</Affiliation>\n")
+                        inp_allaff_str += "\n\t</Affiliation>\n"
+                    w_flag = "0"
+                    stri = ""
+    outfile = open(directory + "input_AllAffiliations.txt",'w')
+    outfile.write(inp_allaff_str)
+    outfile.close()  
+    return inp_allaff_str  
+    '''
     root =  ET.Element("Affiliations")
     currentElem = ET.Element("IgnoreThis___NeverUSed")
     tree = ET.ElementTree(root)
@@ -222,8 +280,11 @@ def aff_main(xroot, max_font_size):
                 if w_flag == "0":  #if start of Affiliation
                     prevElem = currentElem
                     currentElem = ET.SubElement(root, "Affiliation")
+                    #outfile.write("\n\t<Affiliation>\n\t\t")
+                    # inp_allaff_str += "\n\t<Affiliation>\n\t\t"
                 stri += ((abc[0].strip(',')).strip('.') + ' ')
                 currentElem.text = ''
+                # currentElem.text = ((abc[0].strip(',')).strip('.') + ' ')
                 w_flag = "1"
             else:
                 if w_flag == "1":
@@ -231,15 +292,22 @@ def aff_main(xroot, max_font_size):
                     if stri.find(" ")==-1 and stri.isupper()==False: #Only one word which isn't an abbreviation => Can't be an affiliation [Note: May fail in cases like "Facebook", "Google", "Amazon" etc]
                         root.remove(currentElem)
                         currentElem = prevElem
+                        # inp_allaff_str = inp_allaff_str[:-18]
                     elif stri.isdigit() and len(stri)>=5:
+                        #inp_allaff_str = inp_allaff_str[:-35]
                         prevElem.text += " "+stri;
                         root.remove(currentElem)
                         currentElem = prevElem
+                        #inp_allaff_str += " " + stri
+                        #inp_allaff_str += "\n\t</Affiliation>\n"
                     else:
+                        # inp_allaff_str += stri
+                        # inp_allaff_str += "\n\t</Affiliation>\n"
                         currentElem.text+=stri
                     w_flag = "0"
                     stri = ""
 
     tree.write(directory + 'input_AllAffiliations.txt')
+    # print ET.tostring(root,method='xml')
     return root
     
