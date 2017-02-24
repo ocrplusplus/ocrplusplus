@@ -318,8 +318,19 @@ def sec_main(xroot,newxroot,modalFS):
 			count_NI = count_NI +1
 	if count_I >= count_NI:
 		#print ("Indexed!")
-		tree_I.write(directory + "Secmap.xml")
-		# root = tree_I.getroot()
+		root = tree_I.getroot()
+		for section in tree_I.findall("section"):
+			candidate = section.find("chunk")
+			if candidate is not None:
+				# print '------A------'
+				# print candidate.text
+				# print '--------------'
+				if candidate.text is None or len(candidate.text.strip()) == 0:
+					# print "Found empty!"
+					root.remove(candidate)
+			elif section.find("heading") is None:
+				root.remove(section)
+		ET.ElementTree(root).write(directory + "Secmap.xml")
 		# f = open('eval_secmap.txt','w')
 		# for section in root.findall('section'):
 		# 	heads = section.findall('heading')
@@ -335,10 +346,21 @@ def sec_main(xroot,newxroot,modalFS):
 		# 		f.write("Chunks: "+" ".join(cw[:5])+" ... "+" ".join(cw[-5:])+"\n")
 		# f.close()
 
-
 	if count_I < count_NI:
 		#print ("Non-Indexed!")
-		tree_NI.write(directory + "Secmap.xml")
+		root = tree_NI.getroot()
+		for section in tree_NI.findall("section"):
+			candidate = section.find("chunk")
+			if candidate is not None:
+				# print '------A------'
+				# print candidate.text
+				# print '--------------'
+				if candidate.text is None or len(candidate.text.strip()) == 0:
+					# print "Found empty!"
+					root.remove(candidate)
+			elif section.find("heading") is None:
+				root.remove(section)
+		ET.ElementTree(root).write(directory + "Secmap.xml")
 		#root = tree_NI.getroot()
 		# f = open('eval_secmap.txt','w')
 		# for section in root.findall('section'):
