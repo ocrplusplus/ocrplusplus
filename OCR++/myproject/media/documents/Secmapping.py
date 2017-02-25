@@ -319,7 +319,7 @@ def sec_main(xroot,newxroot,modalFS):
 	if count_I >= count_NI:
 		#print ("Indexed!")
 		root = tree_I.getroot()
-		for section in tree_I.findall("section"):
+		for section in root.findall("section"):
 			candidate = section.find("chunk")
 			if candidate is not None:
 				# print '------A------'
@@ -327,7 +327,7 @@ def sec_main(xroot,newxroot,modalFS):
 				# print '--------------'
 				if candidate.text is None or len(candidate.text.strip()) == 0:
 					# print "Found empty!"
-					root.remove(candidate)
+					section.remove(candidate)
 			elif section.find("heading") is None:
 				root.remove(section)
 		ET.ElementTree(root).write(directory + "Secmap.xml")
@@ -349,7 +349,7 @@ def sec_main(xroot,newxroot,modalFS):
 	if count_I < count_NI:
 		#print ("Non-Indexed!")
 		root = tree_NI.getroot()
-		for section in tree_NI.findall("section"):
+		for section in root.findall("section"):
 			candidate = section.find("chunk")
 			if candidate is not None:
 				# print '------A------'
@@ -357,7 +357,7 @@ def sec_main(xroot,newxroot,modalFS):
 				# print '--------------'
 				if candidate.text is None or len(candidate.text.strip()) == 0:
 					# print "Found empty!"
-					root.remove(candidate)
+					section.remove(candidate)
 			elif section.find("heading") is None:
 				root.remove(section)
 		ET.ElementTree(root).write(directory + "Secmap.xml")
