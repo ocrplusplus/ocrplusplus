@@ -40,5 +40,5 @@ NOTE : The tool works only on Linux-based systems
 ##### Dependencies:
     - nltk (nltk + averaged_perceptron_tagger)
     - django (Only if you want to run it as a server)
-    - crfpp (Try downloading the source from [FileWatcher](http://www.filewatcher.com/m/CRF++-0.58.tar.gz.790570-0.html) )
+    - crfpp (Try downloading the source from http://www.filewatcher.com/m/CRF++-0.58.tar.gz.790570-0.html)
     
