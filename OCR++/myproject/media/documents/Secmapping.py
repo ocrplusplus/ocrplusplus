@@ -15,13 +15,13 @@ import math
 directory = '/var/www/html/OCR++/myproject/media/documents/'
 
 """
-Create an XML of headings and sections
+Create an XML of headings and sections for indexed inputs
 """
 def generateXML(tree):
-	rt = tree.getroot()
-	ls = rt.findall('chunk')
+	root = tree.getroot()
+	chunk_list = root.findall('chunk')
 	st_chunk = ''
-	sp_length = len(ls)
+	chunk_list_length = len(chunk_list)
 	chunk_stat =0
 	xroot = ET.Element("sec_map")
 	new_section = ET.SubElement(xroot, "section")
@@ -31,7 +31,7 @@ def generateXML(tree):
 			cols = line.split('\t')
 			if len(cols)==9 and cols[8] == '1\n':
 				st = ''
-				for token in ls[count].findall('token'):
+				for token in chunk_list[count].findall('token'):
 					st = st + token.text+' '
 				st = st.strip('\n')
 				if(chunk_stat == 1):
@@ -40,9 +40,9 @@ def generateXML(tree):
 					st_chunk = ''
 				new_section = ET.SubElement(xroot, "section")
 				ET.SubElement(new_section, "heading").text = st
-			elif(count<sp_length) :
+			elif(count<chunk_list_length) :
 				chunk_stat =1
-				for token in ls[count].findall('token'):
+				for token in chunk_list[count].findall('token'):
 					st_chunk = st_chunk + token.text+' '
 				st_chunk = st_chunk.strip('\n')
 			count = count + 1
@@ -51,11 +51,15 @@ def generateXML(tree):
 	return xroot
 
 
+"""
+Create an XML of headings and sections for non-indexed inputs
+"""
+
 def generateXML_NI(tree):
-	rt = tree.getroot()
-	ls = rt.findall('chunk')
+	root = tree.getroot()
+	chunk_list = root.findall('chunk')
 	st_chunk = ''
-	sp_length = len(ls)
+	chunk_list_length = len(chunk_list)
 	chunk_stat =0
 	xroot = ET.Element("sec_map")
 	new_section = ET.SubElement(xroot, "section")
@@ -65,7 +69,7 @@ def generateXML_NI(tree):
 			cols = line.split('\t')
 			if len(cols)==9 and cols[8] == '1\n':
 				st = ''
-				for token in ls[count].findall('token'):
+				for token in chunk_list[count].findall('token'):
 					st = st + token.text+' '
 				st = st.strip('\n')
 				if(chunk_stat == 1):
@@ -74,9 +78,9 @@ def generateXML_NI(tree):
 					st_chunk = ''
 				new_section = ET.SubElement(xroot, "section")
 				ET.SubElement(new_section, "heading").text = st
-			elif(count<sp_length) :
+			elif(count<chunk_list_length) :
 				chunk_stat =1
-				for token in ls[count].findall('token'):
+				for token in chunk_list[count].findall('token'):
 					st_chunk = st_chunk + token.text+' '
 				st_chunk = st_chunk.strip('\n')
 			count = count + 1
@@ -98,19 +102,21 @@ Special Symbols     - 3
 Rest                - 4
 """
 
-def token_features(y):
-	x=y.strip()
-	parts=x.split('.')
-	if(x=="Abstract" or x== "ABSTRACT" or x=="Acknowledgement" or x== "ACKNOWLEDGEMENT" or x=="References" or x== "Reference" or x == "REFERENCE" or x=="REFERENCES" or x=="Acknowledgements" or x== "ACKNOWLEDGEMENTs"):
+def token_features(token_):
+	token=token_.strip()
+	parts=token.split('.')
+	if(token=="Abstract" or token== "ABSTRACT" or token=="Acknowledgement" or token== "ACKNOWLEDGEMENT" or token=="References" or token== "Reference" or token == "REFERENCE" or token=="REFERENCES" or token=="Acknowledgements" or token== "ACKNOWLEDGEMENTS"):
 		return "6"
-	if(x=="$$$"):
+	if(token=="$$$"):
 		return "5"
-	if x=="Table" or x=="TABLE" or x=="Figure" or x=="FIGURE" or x=="Fig.":
+	if token=="Table" or token=="TABLE" or token=="Figure" or token=="FIGURE" or token=="Fig.":
 		return "0"
 	p_len = len(parts)
+	# For numerical tokens without decimal part
 	if(p_len==1):
-		if(x.isdigit() and 1<=int(x)<=20):
+		if(token.isdigit() and 1<=int(token)<=20):
 			return "1"
+	# For tokens with decimal part		
 	if(p_len==2 or p_len==3):
 		if(parts[0].isdigit() and 1<=int(parts[0])<=20):
 			if(parts[1]=='' or (parts[1].isdigit() and int(parts[1])<=20)):
@@ -118,6 +124,7 @@ def token_features(y):
 					return "1"
 				if(parts[1].isdigit() and int(parts[1])<=20 and parts[2]==''):
 					return "1"
+	# For tokens with Roman numerals				
 	if(p_len==1 or (p_len==2 and parts[1]=='')):
 		try:
 			val = roman.fromRoman(parts[0].upper())
@@ -128,8 +135,9 @@ def token_features(y):
 		if((len(parts[0])==1 and 'A'<=parts[0]<='Z') or (len(parts[0])==3 and parts[0][0]=='(' and parts[0][2]==')' and parts[0][1].isalpha() and parts[0][1].isupper()) or (len(parts[0])==2 and parts[0][1]==')' and parts[0][0].isalpha() and parts[0][0].isupper())):
 			if(p_len==1 or (p_len==2 and parts[1]=='')):
 				return "1"
-	if x[0].isupper():
-		return "2"
+	# For tokens indexed using alphabets			
+	if token[0].isupper():
+		return "2" 
 	if (not(parts[0].isalpha() or parts[0].isdigit())):
 		return "3"
 	return "4"
@@ -142,7 +150,7 @@ file as parameters, path is defaulted to be the
 current directory
 """
 
-# def secmap(ff, path=""):
+
 def sec_main(xroot,newxroot,modalFS):
 
 	tree = ET.ElementTree(newxroot)
@@ -150,7 +158,8 @@ def sec_main(xroot,newxroot,modalFS):
 	newxroot = ET.Element("Document")
 	ET.SubElement(newxroot, "chunk")
 
-	preFS = None
+	previous_Font_Size = None
+	# Refining the chunks in xroot using font sizes
 	for chunks in xroot.findall('chunk'):
 		chunk = ET.SubElement(newxroot, "chunk")
 		count = 0
@@ -158,16 +167,16 @@ def sec_main(xroot,newxroot,modalFS):
 		if(len(chunks)>20):
 			stat = 1
 		for token in chunks.findall('token'):
-			if count < 15 and preFS is not None and preFS < float(token.attrib["font_size"]) and stat==1:
+			if count < 15 and previous_Font_Size is not None and previous_Font_Size < float(token.attrib["font_size"]) and stat==1:
 				chunk = ET.SubElement(newxroot, "chunk")
 				ET.SubElement(chunk, "token", font_size=token.attrib['font_size'], bold=token.attrib['bold']).text = token.text
 			else:
 				ET.SubElement(chunk, "token", font_size=token.attrib['font_size'], bold=token.attrib['bold']).text = token.text
 				count  = count + 1
-			preFS = float(token.attrib['font_size'])
+			previous_Font_Size = float(token.attrib['font_size'])
 
 	tree_NI = ET.ElementTree(newxroot)
-	# tree_NI.write(ff+"_fin_NI.xml")
+	
 
 	# Generating the final txt config file
 
@@ -175,10 +184,11 @@ def sec_main(xroot,newxroot,modalFS):
 
 	newxroot = tree.getroot()
 
-	for achunk in newxroot.findall('chunk'):
+	# Printing the token features into a file for tagging used CRF model on indexed inputs
+	for _chunk in newxroot.findall('chunk'):
 		boldness = 0
-		fsize = 0
-		tokens = achunk.findall('token')
+		Font_Size = 0
+		tokens = _chunk.findall('token')
 		if(len(tokens)==0):
 			f.write('xxx\t0\t0\t0.0\t0\t0\t0\t0\n')
 			continue
@@ -188,26 +198,28 @@ def sec_main(xroot,newxroot,modalFS):
 		else:
 			tok1 = tokens[0].text
 			tok2 = tokens[1].text
-		tcount = len(tokens)
+		no_of_tokens = len(tokens)
 		for t in tokens:
 			if(t.attrib['bold']=="yes"):
 				boldness=boldness+1
-			fsize = fsize + float(t.attrib['font_size'])
-		boldness = round(boldness/tcount,2)
-		fsize = (fsize/tcount)/modalFS
-		tcount = math.floor(tcount / 16)
-		f.write(tok1+"\t"+tok2+"\t"+str(int(tcount))+"\t"+str(boldness)+"\t"+str(round(fsize,2))+"\t"+token_features(tok1)+"\t"+token_features(tok2)+"\t0\n")
+			Font_Size = Font_Size + float(t.attrib['font_size'])
+		boldness = round(boldness/no_of_tokens,2)
+		Font_Size = (Font_Size/no_of_tokens)/modalFS
+		no_of_tokens = math.floor(no_of_tokens / 16)
+		f.write(tok1+"\t"+tok2+"\t"+str(int(no_of_tokens))+"\t"+str(boldness)+"\t"+str(round(Font_Size,2))+"\t"+token_features(tok1)+"\t"+token_features(tok2)+"\t0\n")
 
 	f.close()
+	# Tagging used CRF model
 	subprocess.call("crf_test -m mod2 " + 'input_out.txt'+" > " + "finalsec.txt", shell=True)
 
 	f = open(directory + 'input_out_NI.txt','w')
 	newxroot = tree_NI.getroot()
 
-	for achunk in newxroot.findall('chunk'):
+	# Printing the token features into a file for tagging used CRF model on non-indexed inputs
+	for _chunk in newxroot.findall('chunk'):
 		boldness = 0
-		fsize = 0
-		tokens = achunk.findall('token')
+		Font_Size = 0
+		tokens = _chunk.findall('token')
 		if(len(tokens)==0):
 			f.write('xxx\t0\t0\t0.0\t0\t0\t0\t0\n')
 			continue
@@ -217,23 +229,22 @@ def sec_main(xroot,newxroot,modalFS):
 		else:
 			tok1 = tokens[0].text
 			tok2 = tokens[1].text
-		tcount = len(tokens)
+		no_of_tokens = len(tokens)
 		for t in tokens:
 			if(t.attrib['bold']=="yes"):
 				boldness=boldness+1
-			fsize = fsize + float(t.attrib['font_size'])
-		boldness = round(boldness/tcount,2)
-		fsize = (fsize/tcount)/modalFS
-		tcount = math.floor(tcount / 16)
-		f.write(tok1+"\t"+tok2+"\t"+str(int(tcount))+"\t"+str(boldness)+"\t"+str(round(fsize,2))+"\t"+token_features(tok1)+"\t"+token_features(tok2)+"\t0\n")
+			Font_Size = Font_Size + float(t.attrib['font_size'])
+		boldness = round(boldness/no_of_tokens,2)
+		Font_Size = (Font_Size/no_of_tokens)/modalFS
+		no_of_tokens = math.floor(no_of_tokens / 16)
+		f.write(tok1+"\t"+tok2+"\t"+str(int(no_of_tokens))+"\t"+str(boldness)+"\t"+str(round(Font_Size,2))+"\t"+token_features(tok1)+"\t"+token_features(tok2)+"\t0\n")
 
 	f.close()
 
-
-	# subprocess.call("crf_test -m mod_10_1 " + ff.split('.')[0]+'_out.txt'+" > " + directory + "finalsec_NI.txt", shell=True)
+	# Tagging uing CRF model
 	subprocess.call("crf_test -m model_4_1_16 " + directory + 'input_out.txt'+" > " + directory + "finalsec_NI.txt", shell=True)
 
-
+	# Reading the tagged results
 	secTree_I = generateXML(tree)
 	secTree_NI = generateXML_NI(tree)
 
@@ -244,63 +255,60 @@ def sec_main(xroot,newxroot,modalFS):
 	xroot = ET.Element("sec_map")
 	new_stat = 0
 	new_head = 0
-
+	# Refining the tags based journal based heuristic in indexed inputs
 	for section in secTree_I.findall('section'):
 		new_stat = 0
 		new_head = 0
 		new_section = ET.SubElement(xroot, "section")
-		for aheading in section.findall('heading'):
-			# print(aheading.text)
+		for _heading in section.findall('heading'):
 			new_head = 1
-			if(len(aheading.text.split())<=10):
+			if(len(_heading.text.split())<=10):
 				for x in journal_related:
-					if(x in aheading.text):
+					if(x in _heading.text):
 						for chunk in section.findall("chunk"):
-							ET.SubElement(new_section,"chunk").text =(aheading.text + " "+chunk.text)
+							ET.SubElement(new_section,"chunk").text =(_heading.text + " "+chunk.text)
 						new_stat = 1
 						break
 				if(new_stat == 0):
-					ET.SubElement(new_section,"heading").text = aheading.text
+					ET.SubElement(new_section,"heading").text = _heading.text
 					for chunk in section.findall('chunk'):
 						ET.SubElement(new_section,'chunk').text = chunk.text
 			else:
 				for chunk in section.findall("chunk"):
-					ET.SubElement(new_section,"chunk").text =(aheading.text + " "+chunk.text)
+					ET.SubElement(new_section,"chunk").text =(_heading.text + " "+chunk.text)
 		if(new_head == 0):
 			for chunk in section.findall('chunk'):
 				ET.SubElement(new_section,'chunk').text = chunk.text
 
 	tree_I =  ET.ElementTree(xroot)
 
-	# cc =  ET.tostring(xroot, 'utf-8')
-	# reparsed = xml.dom.minidom.parseString(cc)
-	# print reparsed.toprettyxml(indent="\t")
 
 
 	xroot_NI = ET.Element("sec_map")
 	new_stat = 0
 	new_head = 0
 
+	# Refining the tags based journal based heuristic in indexed inputs
 	for section in secTree_NI.findall('section'):
 		new_stat = 0
 		new_head = 0
 		new_section = ET.SubElement(xroot_NI, "section")
-		for aheading in section.findall('heading'):
+		for _heading in section.findall('heading'):
 			new_head = 1
-			if(len(aheading.text.split())<=10):
+			if(len(_heading.text.split())<=10):
 				for x in journal_related:
-					if(x in aheading.text):
+					if(x in _heading.text):
 						for chunk in section.findall("chunk"):
-							ET.SubElement(new_section,"chunk").text =(aheading.text + " "+chunk.text)
+							ET.SubElement(new_section,"chunk").text =(_heading.text + " "+chunk.text)
 						new_stat = 1
 						break
 				if(new_stat == 0):
-					ET.SubElement(new_section,"heading").text = aheading.text
+					ET.SubElement(new_section,"heading").text = _heading.text
 					for chunk in section.findall('chunk'):
 						ET.SubElement(new_section,'chunk').text = chunk.text
 			else:
 				for chunk in section.findall("chunk"):
-					ET.SubElement(new_section,"chunk").text =(aheading.text + " "+chunk.text)
+					ET.SubElement(new_section,"chunk").text =(_heading.text + " "+chunk.text)
 		if(new_head == 0):
 			for chunk in section.findall('chunk'):
 				ET.SubElement(new_section,'chunk').text = chunk.text
@@ -310,6 +318,8 @@ def sec_main(xroot,newxroot,modalFS):
 
 	count_I =0
 	count_NI =0
+
+	# Deciding if an input is indexed or non-indexed
 	for section in tree_I.findall("section"):
 		for heading in section.findall("heading"):
 			count_I = count_I+1
@@ -317,67 +327,26 @@ def sec_main(xroot,newxroot,modalFS):
 		for heading in section.findall("heading"):
 			count_NI = count_NI +1
 	if count_I >= count_NI:
-		#print ("Indexed!")
 		root = tree_I.getroot()
 		for section in root.findall("section"):
 			candidate = section.find("chunk")
 			if candidate is not None:
-				# print '------A------'
-				# print candidate.text
-				# print '--------------'
 				if candidate.text is None or len(candidate.text.strip()) == 0:
-					# print "Found empty!"
 					section.remove(candidate)
 			elif section.find("heading") is None:
 				root.remove(section)
 		ET.ElementTree(root).write(directory + "Secmap.xml")
-		# f = open('eval_secmap.txt','w')
-		# for section in root.findall('section'):
-		# 	heads = section.findall('heading')
-		# 	chunks = section.findall('chunk')
-		# 	# print "<<section>>"
-		# 	f.write("<<section>>\n")
-		# 	if(len(heads)>0):
-		# 		# print "Heading: "+heads[0].text
-		# 		f.write("Heading: "+heads[0].text+"\n")
-		# 	if(len(chunks)>0):
-		# 		cw = chunks[0].text.split()
-		# 		# print "Chunks: "+" ".join(cw[:5])+" ... "+" ".join(cw[-5:])
-		# 		f.write("Chunks: "+" ".join(cw[:5])+" ... "+" ".join(cw[-5:])+"\n")
-		# f.close()
+		
 
 	if count_I < count_NI:
-		#print ("Non-Indexed!")
 		root = tree_NI.getroot()
 		for section in root.findall("section"):
 			candidate = section.find("chunk")
 			if candidate is not None:
-				# print '------A------'
-				# print candidate.text
-				# print '--------------'
 				if candidate.text is None or len(candidate.text.strip()) == 0:
-					# print "Found empty!"
 					section.remove(candidate)
 			elif section.find("heading") is None:
 				root.remove(section)
 		ET.ElementTree(root).write(directory + "Secmap.xml")
-		#root = tree_NI.getroot()
-		# f = open('eval_secmap.txt','w')
-		# for section in root.findall('section'):
-		# 	heads = section.findall('heading')
-		# 	chunks = section.findall('chunk')
-		# 	# print "<<section>>"
-		# 	f.write("<<section>>\n")
-		# 	if(len(heads)>0):
-		# 		# print "Heading: "+heads[0].text
-		# 		f.write("Heading: "+heads[0].text+"\n")
-		# 	if(len(chunks)>0):
-		# 		cw = chunks[0].text.split()
-		# 		# print "Chunks: "+" ".join(cw[:5])+" ... "+" ".join(cw[-5:])
-		# 		f.write("Chunks: "+" ".join(cw[:5])+" ... "+" ".join(cw[-5:])+"\n")
-		# f.close()
-
-	# cc =  ET.tostring(xroot_NI, 'utf-8')
-	# reparsed = xml.dom.minidom.parseString(cc)
-	# print reparsed.toprettyxml(indent="\t")
+		
 
