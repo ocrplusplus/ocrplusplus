@@ -8,14 +8,74 @@ import sys
 import unicodedata
 import re
 import pickle
+from xml.sax.saxutils import escape
 
 directory = '/var/www/html/OCR++/myproject/media/documents/'
+'''
+def generateXML(title,authors_list,aff_xml,emails_list,map_xml,urls_xml,sec_map_xml,footnotes_xml,tab_fig_xml,cit_ref_xml):
 
+	root =  ET.Element("Document")
+	tree = ET.ElementTree(root)
+	
+	titleElem = ET.SubElement(root,"Title")
+	titleElem.text = title
+
+	AuthorsElem = ET.SubElement(root,"Authors")
+	for author in authors_list:
+		AnAuthor = ET.SubElement(AuthorsElem,"Author")
+		author_divided = author.split(' ')
+		if len(author_divided)==1:
+			first_name = author_divided[0]
+			middle_name = ""
+			last_name = ""
+		elif len(author_divided)==2:
+			first_name = author_divided[0]
+			middle_name = ""
+			last_name = author_divided[1]
+		else:
+			first_name = author_divided[0]
+			last_name = author_divided[-1]
+			middle_name = ""
+			for midpart in author_divided[1:-1]:
+				middle_name += midpart
+				middle_name += " "
+			middle_name = middle_name.strip() 
+
+		AFirstName = ET.SubElement(AnAuthor,"First_Name")
+		AFirstName.text = first_name
+		AMiddleName = ET.SubElement(AnAuthor,"Middle_Name")
+		AMiddleName.text = middle_name
+		ALastName = ET.SubElement(AnAuthor,"Last_Name")
+		ALastName.text = last_name
+
+	# AffsElem = ET.SubElement(root,"Affliations")
+	# for aff in affiliations_list:
+	# 	AnAff = ET.SubElement(AffsElem,"Affliation")
+	# 	AnAff.text = aff
+
+	root.append(aff_xml)
+
+	EmailsElem = ET.SubElement(root,"Emails")
+	for email in emails_list:
+		AnEmail = ET.SubElement(EmailsElem,"Email")
+		AnEmail.text = email
+
+
+	root.append(map_xml)
+	root.append(sec_map_xml)
+	root.append(tab_fig_xml)
+	root.append(footnotes_xml)
+	root.append(urls_xml)
+	root.append(cit_ref_xml)
+
+	tree = ET.ElementTree(root)
+	tree.write(directory + 'output.xml')
+'''
 def getEveryThing():
 	# title = open('temptitle.txt','r').read()
 	# authors = open('file_for_names.txt','r').readlines()
 	title_authors_xml = ET.parse(directory + 'TitleAuthor.xml').getroot()
-	title = title_authors_xml.find('title').text.strip()
+	title = escape(title_authors_xml.find('title').text.strip())
 	authors = []
 	for author in title_authors_xml.findall('name'):
 		try:
@@ -31,11 +91,11 @@ def getEveryThing():
 		except:
 			last_name = ""
 		if middle_name!="":
-			authors.append(first_name+" "+middle_name+" "+last_name)
+			authors.append(escape(first_name+" "+middle_name+" "+last_name))
 		else:
-			authors.append(first_name+" "+last_name)
+			authors.append(escape(first_name+" "+last_name))
 	# print authors
-	emails = open(directory + 'input_Allmails_for_map_temp.txt','r').read().replace('#e ','').strip().split('\n')
+	emails = escape(open(directory + 'input_Allmails_for_map_temp.txt','r').read().replace('#e ','').strip()).split('\n')
 	aff_xml = ET.parse(directory + 'input_AllAffiliations.txt').getroot()
 	
 	map_xml_wrong = ET.parse(directory + 'map.txt').getroot()
@@ -48,9 +108,9 @@ def getEveryThing():
 		email = map_.text.split()[-1]
 		currentMap = ET.SubElement(map_xml_root,'Map')
 		aut = ET.SubElement(currentMap,'Author')
-		aut.text = author
+		aut.text = escape(author)
 		mail = ET.SubElement(currentMap,'Email')
-		mail.text = email
+		mail.text = escape(email)
 
 	urls_xml = ET.parse(directory + 'URLop.txt').getroot()
 	sec_map_xml = ET.parse(directory + 'Secmap.xml').getroot()
@@ -59,7 +119,12 @@ def getEveryThing():
 	cit_ref_xml = ET.parse(directory + 'input_res.xml').getroot()
 	cit_ref_xml.tag = "Citations_And_References"
 	return title,authors,aff_xml,emails,map_xml,urls_xml,sec_map_xml,footnotes_xml,tab_fig_xml,cit_ref_xml
-
+'''
+def main():
+	title,authors,aff_xml,emails,map_xml,urls_xml,sec_map_xml,footnotes_xml,tab_fig_xml,cit_ref_xml = getEveryThing()
+	generateXML(title,authors,aff_xml,emails,map_xml,urls_xml,sec_map_xml,footnotes_xml,tab_fig_xml,cit_ref_xml)
+'''
+# main()
 def getPDFOrder():
 	tree = ET.parse(directory+"input.xml")
 	root = tree.getroot()
@@ -74,8 +139,7 @@ def getPDFOrder():
 				else:
 					s += token.text
 				s +=" "
-	s = s.replace("- ","")
-	# print s
+	s = escape(s.replace("- ",""))
 	return s
 
 # getPDFOrder()
@@ -121,11 +185,11 @@ def findPositions():
 	for sec in sec_map_xml:
 		for heading in sec.findall('heading'):
 			heading.text = heading.text.strip()
-			secHeadings.append((pdf.find(heading.text),heading.text,"<SectionHeading>"))
+			secHeadings.append((pdf.find(heading.text),escape(heading.text),"<SectionHeading>"))
 		for chunk in sec.findall('chunk'):
 
 			findFor = ("".join([x.strip()+" " for x in chunk.text.split(' ')[:5]])).strip()
-			secChunks.append((pdf.find(findFor),chunk.text.strip(),"<SectionChunk>"))
+			secChunks.append((pdf.find(findFor),escape(chunk.text.strip()),"<SectionChunk>"))
 	# print secHeadings
 	EveryThing = EveryThing + secHeadings
 	EveryThing = EveryThing + secChunks
@@ -167,9 +231,10 @@ def findPositions():
 
 	pdfWithoutReferences = pdf[:minRef]
 	for cit in citations:
-		# re.escape changes cit.text so that it does not mean anything else as a regex (Add '\' wherever neccessary)
+		# re.escape changes cit.text so that it does not mean anything else as a regex (Adds '\' wherever neccessary)
 		thisReferenceCitedAt = [m.start() for m in re.finditer(re.escape(cit.text),pdfWithoutReferences)]
-		
+		# print thisReferenceCitedAt, pdfWithoutReferences.find(cit.text)
+
 	return sorted(EveryThing),pdf
 
 def main():
