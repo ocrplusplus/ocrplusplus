@@ -3,6 +3,15 @@
 
 <head>
 	{% include "includes/header.html" %}
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-96174454-2"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'UA-96174454-2');
+	</script>
 
 	<style>
         * {
@@ -148,7 +157,7 @@
 				<br />
 				<div class = "row">
 					<div class="col-md-12 col-sm-12 col-xs-12">
-				        <embed class = "x_panel" src={{paper_name}} height="500px">
+				        <embed class = "x_panel" src="../../media/documents/sessions/{{session_id}}/input.pdf" height="500px">
 					</div>
 				</div>
 				<!-- footer content -->

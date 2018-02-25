@@ -1,13 +1,11 @@
 <?xml version="1.0" ?>
 <Tables_Figures>
 	<Tables>
-		<table>Table 1: Frequency of Special Characters Non-English or Math Frequency Comments 1 in 1,000 For Swedish names 1 in 5 Common in math $ 4 in 5 Used in business </table>
-		<table>Table 2: Some Typical Commands Command A Number Comments \alignauthor 100 Author alignment \numberofauthors 200 Author enumeration \table 300 For tables \table* 400 For wider tables </table>
+		<table>Table 2.The system results of Bahrain paper currency samples using WED. </table>
+		<table>Table 3.System results of BPC with reduced features using WED. </table>
+		<table>Table 4. System results of using two layers of feed forward back propagation neural networks classification of BPC, with 20 hidden neurons. </table>
 	</Tables>
 	<Figures>
-		<figure>Figure 1: A sample black and white graphic (.eps format). </figure>
-		<figure>Figure 2: A sample black and white graphic (.eps format) that has been resized with the epsfig com- mand. </figure>
-		<figure>Figure 3: A sample black and white graphic (.ps for- mat) that has been resized with the psfig command. </figure>
-		<figure>Figure 4: A sample black and white graphic (.eps format) that needs to span two columns of text. </figure>
+		<figure>Fig. 7 shows the results of BPC recognition using WED, for different and random input samples of 110 Bahrain paper currencies. Table 2 demonstrates the statistics of the nature of the results. </figure>
 	</Figures>
 </Tables_Figures>

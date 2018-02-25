@@ -374,6 +374,8 @@ def printAuthor(title_xml, input_Affl):
     fout += "</title_author>"
     fileTitAut = open(directory + "TitleAuthor.xml",'w')
     fileTitAut.write(fout)
+    fileTitAut.close()
+    print fout
     return fout
 
 

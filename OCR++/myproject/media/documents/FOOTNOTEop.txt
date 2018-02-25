@@ -1,5 +1,2 @@
 <?xml version="1.0" ?>
-<Footnotes>
-	<footnote>1 Two of these, the \numberofauthors and \alignauthor commands, you have already used; another, \balancecolumns, will be used in your very last run of L A T E X to ensure balanced column heights on the last page. </footnote>
-	<footnote>2 This is the second footnote. It starts a series of three foot- notes that add nothing informational, but just give an idea of how footnotes work and look. It is a wordy one, just so you see how a longish one plays out. 3 A third footnote, here. Lets make this a rather short one to see how it looks. 4 A fourth, and last, footnote. </footnote>
-</Footnotes>
+<Footnotes/>
